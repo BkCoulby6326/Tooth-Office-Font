@@ -1,0 +1,84 @@
+<div class="container-fluid bg-light min-vh-100 p-4">
+  
+  <!-- Onglets Figma -->
+  <div class="d-flex justify-content-center mb-5">
+    <div class="bg-white p-2 rounded-pill shadow-sm d-flex gap-2">
+      <button class="btn btn-link text-muted text-decoration-none px-4">Equipe Médicale & Accueil</button>
+      <button class="btn btn-primary rounded-pill px-4" style="background-color: #7F27FF; border: none;">
+        Gestion des soins & Tarifs
+      </button>
+      <button class="btn btn-link text-muted text-decoration-none px-4">Forfait & Abonnement</button>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Formulaire (Gauche) -->
+    <div class="col-md-5">
+      <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+        <h4 class="fw-bold mb-2">Fixez le tarif d’un soin</h4>
+        <p class="text-muted small mb-4">Associez un style issu de la nomenclature nationale à votre grille tarifaire clinique</p>
+        
+        <form [formGroup]="soinForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label class="form-label text-secondary small">Prestation Dentaire</label>
+            <select formControlName="typeSoin" class="form-select bg-light border-0 py-2 rounded-3"
+                    [ngClass]="{'is-invalid': soinForm.get('typeSoin')?.touched && soinForm.get('typeSoin')?.invalid}">
+              <option value="">-Choisissez un type de soin-</option>
+              <option *ngFor="let type of typesDeSoins" [value]="type">{{ type }}</option>
+            </select>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-6">
+              <label class="form-label text-secondary small">Tarif Clinique (fcfa)</label>
+              <input type="number" formControlName="tarifClinique" class="form-control bg-light border-0 py-2 rounded-3">
+            </div>
+            <div class="col-6">
+              <label class="form-label text-secondary small">Durée (minutes)</label>
+              <input type="number" formControlName="duree" class="form-control bg-light border-0 py-2 rounded-3">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 rounded-3 py-2" style="background-color: #7F27FF; border: none;" [disabled]="soinForm.invalid">
+            Enregistrer le soin
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Tableau (Droite) -->
+    <div class="col-md-7">
+      <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+        <h4 class="fw-bold mb-4">Grille des tarifs de soins en vigueur</h4>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-light text-secondary small text-uppercase">
+              <tr>
+                <th>Soin Dentaire</th>
+                <th>Durée Estimée</th>
+                <th>Tarif Actuel</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let soin of soins">
+                <td class="fw-semibold">{{ soin.typeSoin }}</td>
+                <td class="text-muted">{{ soin.duree }} min</td>
+                <td class="fw-bold text-success">{{ soin.tarifClinique }} Fcfa</td>
+                <td>
+                  <button (click)="onDelete(soin.id)" class="btn btn-sm btn-outline-danger border-0">Supprimer</button>
+                </td>
+              </tr>
+              <tr *ngIf="soins.length === 0 && !isLoading">
+                <td colspan="4" class="text-center text-muted py-4">Aucun soin configuré.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="text-center text-muted small mt-5 pt-4 border-top">
+    Tooth Office © 2026. Tous droits réservés . Politique de confidentialité . Support dentaire
+  </footer>
+</div>
