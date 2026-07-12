@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
-import { ResponseApi } from '../models/ResponseApi';
+import { ResponseApi } from '../../models/ResponseApi';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ConsultationCreate } from '../models/consultation-create.model';
-import { ConsultationPatch } from '../models/consultation-patch.model';
+import { ConsultationCreate } from '../../models/consultation-create.model';
+import { ConsultationPatch } from '../../models/consultation-patch.model';
 
 @Injectable({
     providedIn: 'root'
