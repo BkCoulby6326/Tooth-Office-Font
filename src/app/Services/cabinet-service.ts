@@ -3,18 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../environments/environment.development';
+import { CabinetDTO } from '../models/cabinet-dto';
+import { CabinetResponseDTO } from '../models/cabinet-response-dto';
 
-import { CabinetDTO, CabinetResponseDTO } from '../models/cabinet';
-import { DentisteResponseDTO } from '../models/dentiste';
-import { SecretaireResponseDTO } from '../models/secretaire';
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Service()
 export class CabinetService {
-
-  private readonly http = inject(HttpClient);
-  private readonly url = `${environment.apiUrl}/cabinets`;
+    private readonly http = inject(HttpClient);
+  private readonly url = `${environment.apiUrl}api/cabinets`;
 
 
 
@@ -56,38 +53,9 @@ export class CabinetService {
 
 
 
-  getDentistes(id: number): Observable<DentisteResponseDTO[]> {
-    return this.http.get<DentisteResponseDTO[]>(
-      `${this.url}/${id}/dentistes`
-    );
-  }
+ 
 
 
 
-  getSecretaires(id: number): Observable<SecretaireResponseDTO[]> {
-    return this.http.get<SecretaireResponseDTO[]>(
-      `${this.url}/${id}/secretaires`
-    );
-  }
-
-
-
-  getSecretaire(
-    idCabinet: number,
-    idSecretaire: number
-  ): Observable<SecretaireResponseDTO> {
-    return this.http.get<SecretaireResponseDTO>(
-      `${this.url}/${idCabinet}/secretaires/${idSecretaire}`
-    );
-  }
-
-  getDentiste(
-    idCabinet: number,
-    idDentiste: number
-  ): Observable<DentisteResponseDTO> {
-    return this.http.get<DentisteResponseDTO>(
-      `${this.url}/${idCabinet}/dentistes/${idDentiste}`
-    );
-  }
 
 }
