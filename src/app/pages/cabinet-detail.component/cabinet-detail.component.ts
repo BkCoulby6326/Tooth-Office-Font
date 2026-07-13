@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-@injec
+
 @Component({
   selector: 'app-cabinet-detail.component',
   imports: [],
