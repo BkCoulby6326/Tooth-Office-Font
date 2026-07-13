@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HeroBanner } from '../../components/hero-banner/hero-banner';
 import { PatientHeader } from '../../../shared/components/header/patient-header/patient-header';
 import { SearchBar } from '../../components/search-bar/search-bar';
+import { CabinetList } from '../../components/cabinet-list/cabinet-list';
 
 @Component({
   selector: 'app-patient-public',
@@ -9,13 +10,19 @@ import { SearchBar } from '../../components/search-bar/search-bar';
   imports: [
     HeroBanner,
     PatientHeader,
-    SearchBar
+    SearchBar,
+    CabinetList
   ],
   templateUrl: './home-patient.html',
   styleUrl: './home-patient.css',
 })
 export class HomePatient {
+ 
+  search = '';
+
   onSearch(value: string) {
-    console.log(value);
+
+    this.search = value;
+
   }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HeroBanner } from '../../components/hero-banner/hero-banner';
 import { PublicHeader } from '../../../shared/components/header/public-header/public-header';
 import { SearchBar } from '../../components/search-bar/search-bar';
+import { CabinetList } from '../../components/cabinet-list/cabinet-list';
 
 @Component({
   selector: 'app-home-public',
@@ -9,13 +10,16 @@ import { SearchBar } from '../../components/search-bar/search-bar';
   imports: [
     HeroBanner,
     PublicHeader,
-    SearchBar
+    SearchBar,
+    CabinetList
   ],
   templateUrl: './home-public.html',
   styleUrl: './home-public.css',
 })
 export class HomePublic {
+  search ="" ;
+
   onSearch(value: string) {
-    console.log(value);
+    this.search = value;
   }
 }

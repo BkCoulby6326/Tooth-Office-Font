@@ -1,1 +1,29 @@
-<p>cabinet-list works!</p>
+@if(loading){
+
+
+<div class="text-center mt-5">
+
+    Chargement...
+
+</div>
+
+}@else{
+
+<div class="row g-4">
+
+    @for(cabinet of cabinets;track cabinet.idCabinet){
+
+    <div class="col-lg-4 col-md-6">
+
+        <app-cabinet-card
+            [imageUrl]="imageUrl"
+            [cabinet]="cabinet">
+        </app-cabinet-card>
+
+    </div>
+
+    }
+
+</div>
+
+}
