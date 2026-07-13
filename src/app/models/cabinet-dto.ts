@@ -1,8 +1,5 @@
-export interface Cabinet {
-
-  idCabinet: number;
-
-  nomCabinet: string;
+export interface CabinetDTO {
+    nomCabinet: string;
 
   tel: string;
 

@@ -1,0 +1,53 @@
+.cabinet-card{
+
+    border-radius:15px;
+
+}
+
+img{
+
+    height:220px;
+
+    object-fit:cover;
+
+}
+
+h2{
+
+    margin-top:15px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+}
+
+.info{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-top:12px;
+
+}
+
+mat-icon{
+
+    color:#009688;
+
+}
+
+mat-card-actions{
+
+    padding:16px;
+
+}
+
+button{
+
+    width:100%;
+
+}

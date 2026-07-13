@@ -1,6 +1,5 @@
-export interface Cabinet {
-
-  idCabinet: number;
+export interface CabinetResponseDTO {
+    idCabinet: number;
 
   nomCabinet: string;
 
@@ -11,5 +10,4 @@ export interface Cabinet {
   logo: string;
 
   description: string;
-
 }

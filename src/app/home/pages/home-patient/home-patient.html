@@ -1,0 +1,13 @@
+<app-patient-header></app-patient-header>
+<div class="container mt-4">
+
+    <app-hero-banner />
+
+    <app-search-bar
+        (searchChange)="onSearch($event)">
+    </app-search-bar>
+
+  <app-cabinet-list
+  [search]="search">
+  </app-cabinet-list>
+</div>
