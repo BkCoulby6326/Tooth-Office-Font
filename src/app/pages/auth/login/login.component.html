@@ -1,0 +1,21 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>Connexion</h1>
+    <p>Accédez à votre espace Tooth Office</p>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <label for="identifier">Email ou téléphone</label>
+      <input id="identifier" type="text" formControlName="identifier" placeholder="ex. admin@toothoffice.cd ou +243970000010" />
+
+      <label for="motDePasse">Mot de passe</label>
+      <input id="motDePasse" type="password" formControlName="motDePasse" />
+
+      <button type="submit" [disabled]="isSubmitting">Se connecter</button>
+    </form>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    <p class="link">
+      Pas encore de compte ? <a routerLink="/register">Créer un compte</a>
+    </p>
+  </div>
+</div>
