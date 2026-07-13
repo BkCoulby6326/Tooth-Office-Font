@@ -1,0 +1,12 @@
+<app-public-header></app-public-header>
+<div class="container mt-4">
+
+    <app-hero-banner />
+
+    <app-search-bar
+        (searchChange)="onSearch($event)">
+    </app-search-bar>
+    <app-cabinet-list
+        [search]="search">
+        </app-cabinet-list>
+</div>
