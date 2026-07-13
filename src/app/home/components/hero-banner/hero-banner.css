@@ -4,7 +4,7 @@
 
     border-radius:20px;
 
-    background-image:url('/assets/images/banner.jpg');
+    background-image:url('/assets/images/banner.png');
 
     background-size:cover;
 
@@ -47,5 +47,5 @@ h1{
 p{
 
     font-size:1.3rem;
-
+    align-items: flex-end;
 }
