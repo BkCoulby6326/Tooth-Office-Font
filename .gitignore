@@ -53,5 +53,4 @@ src/app/components/Avis-Test/**
 src/app/app.routes.ts
 src/app/app.html
 src/app/app.config.ts
-src/environments/environment.ts
-src/environments/environment.development.ts
+
