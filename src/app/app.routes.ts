@@ -1,3 +1,10 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { AvisTest } from './components/Avis-Test/avis-test/avis-test';
+
+export const routes: Routes = [
+  { path: 'avis', component: AvisTest },
+  { path: '', redirectTo: 'avis', pathMatch: 'full' }
+];
+
+
