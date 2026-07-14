@@ -9,7 +9,6 @@ export interface RegisterRequest {
   prenom: string;
   email: string;
   motDePasse: string;
-  confirmationMotDePasse: string;
   telephone: string;
   adresse?: string;
   role: 'ADMIN_SYSTEM' | 'CHEF_CABINET' | 'DENTISTE' | 'SECRETAIRE' | 'PATIENT';

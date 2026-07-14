@@ -49,7 +49,7 @@ export class PatientService {
 
   /**
    * Crée un nouveau patient.
-   * Le champ `mpd` est obligatoire lors de la création.
+   * Le champ `mdp` est obligatoire lors de la création.
    * @param dto - Les données du patient à créer
    */
   create(dto: PatientRequest): Observable<Patient> {
@@ -58,7 +58,7 @@ export class PatientService {
 
   /**
    * Modifie un patient existant.
-   * Le champ `mpd` peut être omis si le mot de passe ne change pas.
+   * Le champ `mdp` peut être omis si le mot de passe ne change pas.
    * @param id  - L'identifiant du patient à modifier
    * @param dto - Les nouvelles données
    */

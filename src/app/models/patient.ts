@@ -21,7 +21,7 @@ export interface PatientRequest {
   nom: string;
   prenom: string;
   email: string;
-  mpd?: string;            // Optionnel lors d'une mise à jour (laisser vide si inchangé)
+  mdp?: string;            // Optionnel lors d'une mise à jour (laisser vide si inchangé)
   adresse?: string;
   telephone?: string;
   dateNaissance?: string;  // Format "YYYY-MM-DD"

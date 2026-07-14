@@ -48,7 +48,6 @@ export class RegisterComponent {
       email: this.registerForm.value.email ?? '',
       telephone: this.registerForm.value.telephone ?? '',
       motDePasse: this.registerForm.value.motDePasse ?? '',
-      confirmationMotDePasse: this.registerForm.value.confirmationMotDePasse ?? '',
       role: this.registerForm.value.role ?? 'PATIENT'
     }).subscribe({
       next: () => this.router.navigate(['/dashboard']),
