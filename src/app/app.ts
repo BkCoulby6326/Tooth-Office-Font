@@ -4,7 +4,7 @@ import { PlanAbonnementListComponent } from './components/Plan-Abonnement/plan-a
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PlanAbonnementListComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

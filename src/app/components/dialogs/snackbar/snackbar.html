@@ -1,0 +1,14 @@
+
+<div class="snackbar-container" [class]="data.type">
+    <div class="snackbar-content">
+        <div class="snackbar-icon">
+            <i class="bi" [ngClass]="iconMap[data.type]"></i>
+        </div>
+        <div class="snackbar-message">
+            {{ data.message }}
+        </div>
+        <button class="snackbar-close-btn" (click)="dismiss()">
+            OK
+        </button>
+    </div>
+</div>
