@@ -6,7 +6,7 @@ import { SoinTarifComponent } from './soin-tarif/soin-tarif';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SoinTarifComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
