@@ -22,7 +22,7 @@ import { CabinetResponseDTO } from '../../../models/cabinet-response-dto';
   styleUrl: './cabinet-card.css',
 })
 export class CabinetCard {
-    @Input({ required: true })
+  @Input({ required: true })
   cabinet!: CabinetResponseDTO;
 
   @Input()
