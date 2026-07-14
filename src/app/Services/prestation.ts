@@ -13,6 +13,7 @@ export class PrestationService {
   private apiUrl = 'http://localhost:8080/api/prestations'; 
 
   //private http = inject(HttpClient);
+  private apiUrl = '/prestations';
 
   constructor(private http: HttpClient) { }
 

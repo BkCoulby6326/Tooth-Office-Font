@@ -6,46 +6,46 @@ import { Creneau } from '../models/creneau';
 
 @Service()
 export class CreneauService {
-  private readonly http = inject(HttpClient);
-  private readonly url = `${environment.apiUrl}/creneaux`;
+  // private readonly http = inject(HttpClient);
+  // private readonly url = `${environment.apiUrl}/creneaux`;
 
-  create(dto: Creneau): Observable<Creneau> {
-    return this.http.post<Creneau>(this.url, dto);
-  }
+  // create(dto: Creneau): Observable<Creneau> {
+  //   return this.http.post<Creneau>(this.url, dto);
+  // }
 
-  getAll(): Observable<Creneau[]> {
-    return this.http.get<Creneau[]>(this.url);
-  }
+  // getAll(): Observable<Creneau[]> {
+  //   return this.http.get<Creneau[]>(this.url);
+  // }
 
-  getById(id: number): Observable<Creneau> {
-    return this.http.get<Creneau>(`${this.url}/${id}`);
-  }
+  // getById(id: number): Observable<Creneau> {
+  //   return this.http.get<Creneau>(`${this.url}/${id}`);
+  // }
 
-  update(id: number, dto: Creneau): Observable<Creneau> {
-    return this.http.put<Creneau>(`${this.url}/${id}`, dto);
-  }
+  // update(id: number, dto: Creneau): Observable<Creneau> {
+  //   return this.http.put<Creneau>(`${this.url}/${id}`, dto);
+  // }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
-  }
+  // delete(id: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.url}/${id}`);
+  // }
 
-  generer(date: string, dentisteId: number): Observable<Creneau[]> {
-    const params = new HttpParams()
-      .set('date', date)
-      .set('dentisteId', dentisteId.toString());
+  // generer(date: string, dentisteId: number): Observable<Creneau[]> {
+  //   const params = new HttpParams()
+  //     .set('date', date)
+  //     .set('dentisteId', dentisteId.toString());
 
-    return this.http.post<Creneau[]>(`${this.url}/generer`, null, { params });
-  }
+  //   return this.http.post<Creneau[]>(`${this.url}/generer`, null, { params });
+  // }
 
-  getDisponiblesByDentiste(dentisteId: number): Observable<Creneau[]> {
-    return this.http.get<Creneau[]>(`${this.url}/disponibles/dentiste/${dentisteId}`);
-  }
+  // getDisponiblesByDentiste(dentisteId: number): Observable<Creneau[]> {
+  //   return this.http.get<Creneau[]>(`${this.url}/disponibles/dentiste/${dentisteId}`);
+  // }
 
-  bloquer(idCreneau: number): Observable<void> {
-    return this.http.put<void>(`${this.url}/${idCreneau}/bloquer`, {});
-  }
+  // bloquer(idCreneau: number): Observable<void> {
+  //   return this.http.put<void>(`${this.url}/${idCreneau}/bloquer`, {});
+  // }
 
-  liberer(idCreneau: number): Observable<void> {
-    return this.http.put<void>(`${this.url}/${idCreneau}/liberer`, {});
-  }
+  // liberer(idCreneau: number): Observable<void> {
+  //   return this.http.put<void>(`${this.url}/${idCreneau}/liberer`, {});
+  // }
 }
