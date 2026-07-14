@@ -1,0 +1,246 @@
+/* Conteneur général */
+@import url('https://fonts.googleapis.com/css2?family=Geologica:wght@100..900&display=swap');
+.page-container {
+  background: #f7f8fa;
+  min-height: 100vh;
+  padding: 15px 18px 80px;
+  font-family: 'Geologica', sans-serif;
+  color: #222;
+}
+.tarif-form form{
+  display: flex;
+  flex-direction: column;
+}
+/*barres des onglets*/
+.tabs {
+  height: 32px;
+  background: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  margin-bottom: 28px;
+}
+.tab {
+  width: 33%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #999;
+  padding: 8px;
+  border-radius: 7px;
+}
+.tab.active {
+  background: #7C22FF;
+  color: white;
+}
+/*Contenu principal */
+.content {
+  display: flex;
+  gap: 18px;
+}
+
+/* Cartes */
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+/*Formulaire*/
+.tarif-form {
+  width: 34%;
+}
+.card h2 {
+  font-size: 14px;
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+.card p {
+  font-size: 11px;
+  color: #b0b0b0;
+  line-height: 17px;
+  margin-bottom: 18px;
+}
+label {
+  display: block;
+  font-size: 11px;
+  color: #999;
+  margin-bottom: 6px;
+}
+select,
+input {
+  width: 100%;
+  height: 30px;
+  border: none;
+  background: #f4f5f7;
+  border-radius: 7px;
+  padding: 0 10px;
+  font-size: 12px;
+  outline: none;
+}
+.inputs {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+.inputs div {
+  width: 50%;
+}
+button {
+  margin-top: 18px;
+  width: 100%;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: #4F39F6;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover {
+  opacity: 0.9;
+}
+button{
+  transition: .25s;
+}
+
+button:hover{
+  transform: translateY(-2px);
+}
+/*Tableau*/
+.table-card {
+  width: 66%;
+}
+.table-card h2 {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+thead {
+  background: #f7f8fa;
+}
+th {
+  text-align: left;
+  font-size: 10px;
+  color: #999;
+  font-weight: 500;
+  padding: 9px;
+}
+td {
+  padding: 10px;
+  font-size: 11px;
+  border-bottom: 1px solid #eee;
+}
+td:nth-child(2) {
+  color: #bbb;
+  text-align: center;
+}
+.price {
+
+  color: #00B59C;
+  font-weight: 600;
+  text-align: right;
+
+}
+/* FOOTER*/
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 48px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  font-size: 11px;
+  color: #777;
+  border-top: 1px solid #eee;
+
+}
+.copyright {
+  background: #006045;
+  color: white;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+/* Responsivité*/
+
+/* Tablettes */
+@media (max-width: 992px) {
+
+  .content {
+    flex-direction: column;
+  }
+  .tarif-form,
+  .table-card {
+    width: 100%;
+  }
+  .tabs {
+    height: auto;
+    flex-wrap: wrap;
+  }
+  .tab {
+    width: 100%;
+  }
+  footer {
+    position: relative;
+    flex-wrap: wrap;
+    height: auto;
+    padding: 15px;
+    gap: 10px;
+  }
+
+}
+/* Telephones */
+@media (max-width: 600px) {
+  .page-container {
+    padding: 10px;
+  }
+  .content {
+    gap: 15px;
+  }
+  .card {
+    padding: 14px;
+    border-radius: 14px;
+  }
+  .inputs {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .inputs div {
+    width: 100%;
+  }
+  .tabs {
+    flex-direction: column;
+  }
+  .tab {
+    width: 100%;
+    font-size: 11px;
+  }
+  /* rendre le tableau scrollable */
+  .table-card {
+    overflow-x: auto;
+  }
+  table {
+    min-width: 550px;
+  }
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+}
