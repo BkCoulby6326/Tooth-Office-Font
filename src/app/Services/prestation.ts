@@ -9,9 +9,10 @@ import { Prestation } from '../models/Prestation';
 })
 export class PrestationService {
 
-  private apiUrl = environment.apiUrl;
+  //private apiUrl = environment.apiUrl;
 
   //private http = inject(HttpClient);
+  private apiUrl = '/prestations';
 
   constructor(private http: HttpClient) { }
 

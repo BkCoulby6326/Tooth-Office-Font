@@ -9,7 +9,8 @@ import { RendezVous } from '../models/rendez-vous';
 })
 export class RendezVousService {
   private readonly http = inject(HttpClient);
-  private readonly url = `${environment.apiUrl}/rendez-vous`;
+ // private readonly url = `${environment.apiUrl}/rendez-vous`;
+  private   url =   '/rendez-vous';
 
   prendre(dto: RendezVous): Observable<RendezVous> {
     return this.http.post<RendezVous>(`${this.url}/prendre`, dto);
