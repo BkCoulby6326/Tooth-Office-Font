@@ -1,118 +1,118 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+// import { Injectable, inject } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+// import { Observable } from 'rxjs';
 
-import { environment } from '../../environments/environment.development';
+// import { environment } from '../../environments/environment.development';
 
-import { CabinetDTO, CabinetResponseDTO } from '../models/cabinet';
-import { DentisteResponseDTO } from '../models/dentiste';
-import { SecretaireResponseDTO } from '../models/secretaire';
+// import { CabinetDTO, CabinetResponseDTO } from '../models/cabinet';
+// import { DentisteResponseDTO } from '../models/dentiste';
+// import { SecretaireResponseDTO } from '../models/secretaire';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class CabinetService {
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class CabinetService {
 
-//Injection de dependances
-  private readonly http = inject(HttpClient);
-  private readonly url = `${environment.apiUrl}/cabinets`;
-
-
-//Ajouter un nouveau cabinet
-  create(dto: CabinetDTO): Observable<CabinetResponseDTO> {
-    return this.http.post<CabinetResponseDTO>(this.url, dto);
-  }
+// //Injection de dependances
+//   private readonly http = inject(HttpClient);
+//   private readonly url = `${environment.apiUrl}/cabinets`;
 
 
-//Obtenir tous les cabinets
-  getAll(): Observable<CabinetResponseDTO[]> {
-    return this.http.get<CabinetResponseDTO[]>(this.url);
-  }
+// //Ajouter un nouveau cabinet
+//   create(dto: CabinetDTO): Observable<CabinetResponseDTO> {
+//     return this.http.post<CabinetResponseDTO>(this.url, dto);
+//   }
 
 
-//Rechercher un cabinet
-  getById(id: number): Observable<CabinetResponseDTO> {
-    return this.http.get<CabinetResponseDTO>(`${this.url}/${id}`);
-  }
+// //Obtenir tous les cabinets
+//   getAll(): Observable<CabinetResponseDTO[]> {
+//     return this.http.get<CabinetResponseDTO[]>(this.url);
+//   }
 
 
-//Rechercher un cabinet par son nom
-  getByNom(nom: string): Observable<CabinetResponseDTO> {
-    return this.http.get<CabinetResponseDTO>(
-      `${this.url}/recherche?nom=${encodeURIComponent(nom)}`
-    );
-  }
+// //Rechercher un cabinet
+//   getById(id: number): Observable<CabinetResponseDTO> {
+//     return this.http.get<CabinetResponseDTO>(`${this.url}/${id}`);
+//   }
 
 
-//Mettre à jour un cabinet
-  update(id: number, dto: CabinetDTO): Observable<CabinetResponseDTO> {
-    return this.http.put<CabinetResponseDTO>(`${this.url}/${id}`, dto);
-  }
+// //Rechercher un cabinet par son nom
+//   getByNom(nom: string): Observable<CabinetResponseDTO> {
+//     return this.http.get<CabinetResponseDTO>(
+//       `${this.url}/recherche?nom=${encodeURIComponent(nom)}`
+//     );
+//   }
 
 
-//Supprimer un cabinet
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
-  }
+// //Mettre à jour un cabinet
+//   update(id: number, dto: CabinetDTO): Observable<CabinetResponseDTO> {
+//     return this.http.put<CabinetResponseDTO>(`${this.url}/${id}`, dto);
+//   }
 
 
-//Les dentistes d'un cabinet
-  getDentistes(id: number): Observable<DentisteResponseDTO[]> {
-    return this.http.get<DentisteResponseDTO[]>(
-      `${this.url}/${id}/dentistes`
-    );
-  }
+// //Supprimer un cabinet
+//   delete(id: number): Observable<void> {
+//     return this.http.delete<void>(`${this.url}/${id}`);
+//   }
 
 
-//Les secretaires d'un cabinet
-  getSecretaires(id: number): Observable<SecretaireResponseDTO[]> {
-    return this.http.get<SecretaireResponseDTO[]>(
-      `${this.url}/${id}/secretaires`
-    );
-  }
+// //Les dentistes d'un cabinet
+//   getDentistes(id: number): Observable<DentisteResponseDTO[]> {
+//     return this.http.get<DentisteResponseDTO[]>(
+//       `${this.url}/${id}/dentistes`
+//     );
+//   }
 
 
-//Un secretaire d'un cabinet
-  getSecretaire(
-    idCabinet: number,
-    idSecretaire: number
-  ): Observable<SecretaireResponseDTO> {
-    return this.http.get<SecretaireResponseDTO>(
-      `${this.url}/${idCabinet}/secretaires/${idSecretaire}`
-    );
-  }
+// //Les secretaires d'un cabinet
+//   getSecretaires(id: number): Observable<SecretaireResponseDTO[]> {
+//     return this.http.get<SecretaireResponseDTO[]>(
+//       `${this.url}/${id}/secretaires`
+//     );
+//   }
 
 
-//Un dentiste d'un cabinet
-  getDentiste(
-    idCabinet: number,
-    idDentiste: number
-  ): Observable<DentisteResponseDTO> {
-    return this.http.get<DentisteResponseDTO>(
-      `${this.url}/${idCabinet}/dentistes/${idDentiste}`
-    );
-  }
-
-//Les avis sur un cabinet
-getAvisByCabinet(idCabinet:number): Observable<AvisResponseDto[]> {
-
-    return this.http.get<AvisResponseDto[]>(
-      `${this.apiUrl}/${idCabinet}/avis`
-    );
-
-  }
+// //Un secretaire d'un cabinet
+//   getSecretaire(
+//     idCabinet: number,
+//     idSecretaire: number
+//   ): Observable<SecretaireResponseDTO> {
+//     return this.http.get<SecretaireResponseDTO>(
+//       `${this.url}/${idCabinet}/secretaires/${idSecretaire}`
+//     );
+//   }
 
 
-//Un avis sur un cabinet
-  getAvisById(
-    idCabinet:number,
-    idAvis:number
-  ):Observable<AvisResponseDto>{
+// //Un dentiste d'un cabinet
+//   getDentiste(
+//     idCabinet: number,
+//     idDentiste: number
+//   ): Observable<DentisteResponseDTO> {
+//     return this.http.get<DentisteResponseDTO>(
+//       `${this.url}/${idCabinet}/dentistes/${idDentiste}`
+//     );
+//   }
 
-    return this.http.get<AvisResponseDto>(
-      `${this.apiUrl}/${idCabinet}/avis/${idAvis}`
-    );
+// //Les avis sur un cabinet
+// getAvisByCabinet(idCabinet:number): Observable<AvisResponseDto[]> {
 
-  }
+//     return this.http.get<AvisResponseDto[]>(
+//       `${this.apiUrl}/${idCabinet}/avis`
+//     );
 
-}
+//   }
+
+
+// //Un avis sur un cabinet
+//   getAvisById(
+//     idCabinet:number,
+//     idAvis:number
+//   ):Observable<AvisResponseDto>{
+
+//     return this.http.get<AvisResponseDto>(
+//       `${this.apiUrl}/${idCabinet}/avis/${idAvis}`
+//     );
+
+//   }
+
+// }
