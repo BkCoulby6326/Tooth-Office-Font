@@ -1,0 +1,62 @@
+<mat-card class="cabinet-card h-100 shadow">
+
+    <img
+        mat-card-image
+        [src]="imageUrl"
+        [alt]="cabinet.nomCabinet">
+
+    <mat-card-content>
+
+        <h2>
+
+            {{ cabinet.nomCabinet }}
+
+        </h2>
+
+        <p>
+
+            {{ cabinet.description }}
+
+        </p>
+
+        <div class="info">
+
+            <mat-icon>
+
+                location_on
+
+            </mat-icon>
+
+            {{ cabinet.adresse }}
+
+        </div>
+
+        <div class="info">
+
+            <mat-icon>
+
+                phone
+
+            </mat-icon>
+
+            {{ cabinet.tel }}
+
+        </div>
+
+    </mat-card-content>
+
+    <mat-card-actions>
+
+        <button
+            mat-raised-button
+            color="primary"
+            routerLink="/cabinet-detail"
+            [routerLink]="['/cabinet-detail', cabinetId]">
+
+            Voir le cabinet
+
+        </button>
+
+    </mat-card-actions>
+
+</mat-card>

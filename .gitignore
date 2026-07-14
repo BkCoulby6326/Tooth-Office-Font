@@ -1,6 +1,7 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 
 .idea
+.vscode
 
 # Compiled output
 /dist
@@ -44,3 +45,13 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Avis Test component (ignored)
+src/app/components/Avis-Test/
+src/app/components/Avis-Test/**
+
+# Modified files (ignored)
+src/app/app.routes.ts
+src/app/app.html
+src/app/app.config.ts
+

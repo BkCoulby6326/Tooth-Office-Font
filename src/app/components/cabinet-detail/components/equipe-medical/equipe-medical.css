@@ -1,0 +1,70 @@
+.equipe-card{
+    border : none;
+    border-radius: 0.2rem;
+    padding: 10px;
+    background-color: #cfcfcf;
+}
+
+
+
+.search-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  
+}
+
+.equipe-card{
+    Margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 30px;
+    margin-left: 100px;
+    margin-right: 10px;
+    padding-top: 10px;
+    width:  80%;
+    
+}
+app-search-bar{
+    width: 40%;
+}
+.select{
+    width: 40%;
+    
+    border-radius: 0.5rem;
+    border: 1px solid #000;
+}
+.icon-nom{
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+    width: 46%;
+    border : 1px solid #000;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin-right: 6px;
+    
+}
+.icon{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.equipe-list>div{
+
+    display: flex;
+    flex-direction: row;
+   
+}
+
+.nom{
+
+}
