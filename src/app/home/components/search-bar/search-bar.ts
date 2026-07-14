@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SearchBar {
    search = '';
+   msg="Piur"
 
   @Output()
   searchChange = new EventEmitter<string>();

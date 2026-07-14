@@ -16,4 +16,6 @@ export const HOME_ROUTES: Routes = [
                 .then(c => c.HomePatient)
     }
 
+
+
 ];

@@ -1,5 +1,6 @@
 import { EtatAbonnement } from "../enums/etat-abonnement.enum";
-import { TypePaiement } from "../enums/type-paiement.enum";
+import { TypePaiement } from '../enums/type-paiement';
+
 
 export interface Abonnement {
   idAbonnement?: number;

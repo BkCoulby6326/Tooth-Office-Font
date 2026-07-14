@@ -1,0 +1,38 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>Créer un compte</h1>
+    <p>Rejoignez Tooth Office</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="submit()">
+      <label for="nom">Nom</label>
+      <input id="nom" formControlName="nom" />
+
+      <label for="prenom">Prénom</label>
+      <input id="prenom" formControlName="prenom" />
+
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
+
+      <label for="telephone">Téléphone</label>
+      <input id="telephone" formControlName="telephone" />
+
+      <label for="motDePasse">Mot de passe</label>
+      <input id="motDePasse" type="password" formControlName="motDePasse" />
+
+      <label for="confirmationMotDePasse">Confirmation</label>
+      <input id="confirmationMotDePasse" type="password" formControlName="confirmationMotDePasse" />
+
+      <label for="role">Rôle</label>
+      <select id="role" formControlName="role">
+        <option value="PATIENT">Patient</option>
+      </select>
+
+      <button type="submit" [disabled]="isSubmitting">Créer le compte</button>
+    </form>
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    <p class="link">
+      Déjà un compte ? <a routerLink="/login">Se connecter</a>
+    </p>
+  </div>
+</div>

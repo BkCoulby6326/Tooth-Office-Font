@@ -15,7 +15,7 @@
                     matInput
                     [(ngModel)]="search"
                     (keyup)="onSearch()"
-                    placeholder="Rechercher un cabinet, un dentiste ou une spécialité...">
+                    [placeholder]="msg">
 
                 @if(search){
 
