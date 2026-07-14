@@ -1,0 +1,57 @@
+.header{
+
+    height:85px;
+
+    background:white;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:1000;
+
+}
+
+.logo img{
+
+    width:60px;
+
+    height:60px;
+
+}
+
+.logo{
+
+    color:#000;
+
+}
+
+nav a{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#333;
+
+    text-decoration:none;
+
+    font-size:18px;
+
+    font-weight:500;
+
+}
+
+nav a.active{
+
+    color:#009688;
+
+}
+
+mat-icon{
+
+    font-size:22px;
+
+}
