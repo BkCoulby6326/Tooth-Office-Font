@@ -49,7 +49,7 @@ export class ChefCabinetService {
 
   /**
    * Crée un nouveau chef de cabinet.
-   * Le champ `mpd` est obligatoire lors de la création.
+   * Le champ `mdp` est obligatoire lors de la création.
    * @param dto - Les données du chef de cabinet à créer
    */
   create(dto: ChefCabinetRequest): Observable<ChefCabinet> {
@@ -58,7 +58,7 @@ export class ChefCabinetService {
 
   /**
    * Modifie un chef de cabinet existant.
-   * Le champ `mpd` peut être omis si le mot de passe ne change pas.
+   * Le champ `mdp` peut être omis si le mot de passe ne change pas.
    * @param id  - L'identifiant du chef de cabinet à modifier
    * @param dto - Les nouvelles données
    */
