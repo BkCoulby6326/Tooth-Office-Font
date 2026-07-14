@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,7 +22,10 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class SearchBar {
    search = '';
-   msg="Piur"
+
+
+  @Input()
+  message = '';
 
   @Output()
   searchChange = new EventEmitter<string>();
