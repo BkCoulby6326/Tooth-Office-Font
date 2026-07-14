@@ -1,0 +1,160 @@
+/* ==========================
+   STATISTIQUES
+========================== */
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:24px;
+
+    margin-bottom:35px;
+
+}
+
+.stat-card{
+
+    background:#ffffff;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+
+    border:1px solid #eef2f7;
+
+    transition:.25s;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 12px 25px rgba(0,0,0,.08);
+
+}
+
+.stat-content{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.stat-label{
+
+    display:block;
+
+    color:#8c97ab;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    letter-spacing:.8px;
+
+    margin-bottom:8px;
+
+}
+
+.stat-card h2{
+
+    margin:0;
+
+    font-size:38px;
+
+    font-weight:700;
+
+    color:#16213e;
+
+}
+
+.money{
+
+    color:#00a76f !important;
+
+}
+
+.stat-icon{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:24px;
+
+}
+
+/* Couleurs */
+
+.green{
+
+    background:#e9fbf3;
+
+    color:#00a76f;
+
+}
+
+.blue{
+
+    background:#eaf3ff;
+
+    color:#0084ff;
+
+}
+
+.light-green{
+
+    background:#eafbf1;
+
+    color:#22c55e;
+
+}
+
+.money-icon{
+
+    background:#e8fff5;
+
+    color:#00a76f;
+
+}
+
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1200px){
+
+    .stats-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .stats-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

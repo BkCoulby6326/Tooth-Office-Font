@@ -1,5 +1,6 @@
 
 export interface PlanAbonnement {
+  idPlan: number;
   nom: string;
   prixMensuel: number;
   prixAnnuel: number;
