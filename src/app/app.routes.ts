@@ -8,9 +8,8 @@ export const routes: Routes = [
     loadChildren: () => import('./home/home.routes').then((r) => r.HOME_ROUTES),
   },
   {
-    path: '', // Laisse vide pour que l'URL devienne directement /cabinet-detail
-    loadChildren: () =>
-      import('./components/cabinet-detail/route.cabinet-detail') // Adaptez le chemin du fichier
+    path: '',
+    loadChildren: () => import('./components/cabinet-detail/route.cabinet-detail')
         .then((r) => r.CABINETDETAIL_ROUTES),
   },
 
