@@ -11,19 +11,14 @@ import { CabinetResponseDTO } from '../../../models/cabinet-response-dto';
 @Component({
   selector: 'app-cabinet-card',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    MatCardModule,
-    MatButtonModule,
-    MatIconModule
-  ],
+  imports: [CommonModule, RouterLink, MatCardModule, MatButtonModule, MatIconModule],
   templateUrl: './cabinet-card.html',
   styleUrl: './cabinet-card.css',
 })
 export class CabinetCard {
   @Input({ required: true })
   cabinet!: CabinetResponseDTO;
+  cabinetId: number | null = 1;
 
   @Input()
   imageUrl = '';

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import { Injectable, inject, Service } from '@angular/core';
+=======
 import { Injectable, Service, inject } from '@angular/core';
+>>>>>>> a3ee2c2d537652230ad1da5529ed3ca04efcde06
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -53,7 +57,7 @@ export class CabinetService {
 
 
 
- 
+
 
 
 
