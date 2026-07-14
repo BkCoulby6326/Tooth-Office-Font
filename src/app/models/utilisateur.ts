@@ -2,7 +2,7 @@ import { RoleEnum } from "./RoleEnum";
 import { StatutCompte } from "./StatutCompte";
 
 export interface Utilisateur {
-  id_utilisateur: number;
+  id: number;
   nom: string;
   prenom: string;
   email: string;
