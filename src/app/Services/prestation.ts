@@ -10,10 +10,9 @@ import { environment } from '../../environments/environment.development';
 })
 export class PrestationService {
 
-  private apiUrl = 'http://localhost:8080/api/prestations'; 
 
   //private http = inject(HttpClient);
-  private apiUrl = '/prestations';
+  private apiUrl = `${environment.apiUrl}api`;
 
   constructor(private http: HttpClient) { }
 
