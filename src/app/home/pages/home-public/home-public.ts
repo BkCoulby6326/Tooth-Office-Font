@@ -10,8 +10,7 @@ import { SecretaireHeader } from '../../../shared/components/header/secretaire-h
   imports: [
     HeroBanner,
     SearchBar,
-    CabinetList,
-    SecretaireHeader
+    CabinetList
   ],
   templateUrl: './home-public.html',
   styleUrl: './home-public.css',
