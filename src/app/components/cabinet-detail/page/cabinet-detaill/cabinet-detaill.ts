@@ -8,7 +8,7 @@ import { AvisSurCabinet } from '../../components/avis-sur-cabinet/avis-sur-cabin
 @Component({
   selector: 'app-cabinet-detaill',
   standalone: true,
-  imports: [PatientHeader, ButttonRetour, DetailsCabinet, EquipeMedical, AvisSurCabinet],
+  imports: [ButttonRetour, DetailsCabinet, EquipeMedical, AvisSurCabinet],
   templateUrl: './cabinet-detaill.html',
   styleUrl: './cabinet-detaill.css',
 })
