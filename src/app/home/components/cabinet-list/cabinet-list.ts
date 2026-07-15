@@ -8,13 +8,15 @@ import { CabinetDTO } from '../../../models/cabinet-dto';
 import { CabinetCard } from '../cabinet-card/cabinet-card';
 import { CabinetService } from '../../../Services/cabinet-service';
 import { CabinetResponseDTO } from '../../../models/cabinet-response-dto';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-cabinet-list',
   standalone: true,
   imports: [
     CommonModule,
-    CabinetCard
+    CabinetCard,
+    MatProgressSpinnerModule
   ],
   templateUrl: './cabinet-list.html',
   styleUrl: './cabinet-list.css',
