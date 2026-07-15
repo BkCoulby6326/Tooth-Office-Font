@@ -1,4 +1,4 @@
-import { Injectable, Service, inject } from '@angular/core';
+import { Injectable, inject, Service } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -8,10 +8,12 @@ import { CabinetResponseDTO } from '../models/cabinet-response-dto';
 
 
 
+
+
 @Service()
 export class CabinetService {
     private readonly http = inject(HttpClient);
-  private readonly url = `${environment.apiUrl}api/cabinets`;
+  private readonly url = `${environment.apiUrl}/cabinets`;
 
 
 
