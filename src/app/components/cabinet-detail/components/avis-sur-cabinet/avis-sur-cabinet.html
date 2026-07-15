@@ -1,62 +1,117 @@
-<div class="avis-sur-cabinet">
-    <!-- En-tête : Titre et nombre d'avis alignés -->
-    <div class="entete">
-        <h3>Avis des patients</h3>
-        <p>2 avis publié(s)</p>
-    </div>
-    
-    <hr>
-    
-    <!-- Note Globale : Chiffre à gauche, étoiles à droite -->
-    <div class="noteGlobale">
-        <div class="note">
-            <span class="note-number">4.5</span>
-            <span class="note-label">NOTE MOYENNE</span>
-        </div>
-        <div class="etoiles">
-            <span class="etoile-pleine">★</span>
-            <span class="etoile-pleine">★</span>
-            <span class="etoile-pleine">★</span>
-            <span class="etoile-pleine">★</span>
-            <span class="etoile-vide">★</span>
-        </div>
-        <p class="source-avis">Basé sur les avis réels</p>
-    </div>
+<mat-card class="avis-container">
 
-    <!-- Liste des avis -->
-    <div class="liste-avis">
-        
-        <!-- Avis 1 : Moussa Diarra -->
-        <div class="avisPatients">
-            <div class="avis-header">
-                <h4>Moussa Diarra</h4>
-                <span class="date-avis">04 jul 2026</span>
-            </div>
-            <div class="avis-etoiles">
-                <span class="etoile-pleine">★</span>
-                <span class="etoile-pleine">★</span>
-                <span class="etoile-pleine">★</span>
-                <span class="etoile-pleine">★</span>
-                <span class="etoile-pleine">★</span>
-            </div>
-            <p class="texte-avis">"Le cabinet est très bien organisé et le personnel est très professionnel. Un peu d'attente mais les soins sont parfaitement assurés."</p>
-        </div>
+  <mat-card-header>
 
-        <!-- Avis 2 : Bakary Coulibaly -->
-        <div class="avisPatients">
-            <div class="avis-header">
-                <h4>Bakary Coulibaly</h4>
-                <span class="date-avis">06 jul 2026</span>
-            </div>
-            <div class="avis-etoiles">
-                <span class="etoile-pleine">★</span>
-                <span class="etoile-pleine">★</span>
-                <span class="etoile-pleine">★</span>
-                <span class="etoile-pleine">★</span>
-                <span class="etoile-pleine">★</span>
-            </div>
-            <p class="texte-avis">"Super accueil et soins impeccables. Je recommande vivement ce cabinet pour tous vos besoins dentaires."</p>
-        </div>
+    <mat-card-title>
+      Avis des patients
+    </mat-card-title>
+
+    <mat-card-subtitle>
+      {{ avis.length }} avis publié(s)
+    </mat-card-subtitle>
+
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <div class="note-globale">
+
+      <div class="moyenne">
+
+        {{ noteMoyenne | number:'1.1-1' }}
+
+      </div>
+
+      <div class="etoiles">
+
+        @for (etoile of getStars(noteMoyenne); track $index) {
+
+          <mat-icon color="primary">
+
+            {{ etoile ? 'star' : 'star_border' }}
+
+          </mat-icon>
+
+        }
+
+      </div>
+
+      <p class="resume">
+
+        Basé sur {{ avis.length }} avis
+
+      </p>
 
     </div>
-</div>   
+
+    <mat-divider></mat-divider>
+
+    @if (avis.length === 0) {
+
+      <div class="aucun-avis">
+
+        Aucun avis n'a encore été publié.
+
+      </div>
+
+    } @else {
+
+      @for (avisPatient of avis; track avisPatient.id) {
+
+        <mat-card class="avis-card">
+
+          <mat-card-header>
+
+            <mat-card-title>
+
+              {{ avisPatient.nomPatient }}
+
+            </mat-card-title>
+
+            <mat-card-subtitle>
+
+              {{ avisPatient.createAt | date:'dd MMM yyyy' }}
+
+            </mat-card-subtitle>
+
+          </mat-card-header>
+
+          <mat-card-content>
+
+            <div class="etoiles">
+
+              @for (etoile of getStars(avisPatient.note); track $index) {
+
+                <mat-icon color="primary">
+
+                  {{ etoile ? 'star' : 'star_border' }}
+
+                </mat-icon>
+
+              }
+
+              <span class="note">
+
+                {{ avisPatient.note }}/5
+
+              </span>
+
+            </div>
+
+            <p class="commentaire">
+
+              {{ avisPatient.description }}
+
+            </p>
+
+          </mat-card-content>
+
+        </mat-card>
+
+      }
+
+    }
+
+  </mat-card-content>
+
+</mat-card>
