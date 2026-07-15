@@ -1,0 +1,31 @@
+<div class="toast-container position-fixed top-0 end-0 p-3" aria-live="polite" aria-atomic="true">
+  @for (toast of toastService.messages(); track toast.id) {
+    <div
+      class="toast app-toast show"
+      [class]="'toast app-toast show app-toast--' + toast.severity + (toast.closing ? ' app-toast--leaving' : '')"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <div class="app-toast__body">
+        <span class="app-toast__icon" [class]="iconClass(toast.severity)" aria-hidden="true"></span>
+
+        <div class="app-toast__content">
+          <p class="app-toast__title">{{ toast.summary }}</p>
+          @if (toast.detail) {
+            <p class="app-toast__detail">{{ toast.detail }}</p>
+          }
+        </div>
+
+        <button
+          class="app-toast__close"
+          type="button"
+          aria-label="Fermer la notification"
+          (click)="toastService.dismiss(toast.id)"
+        >
+          <i class="bi bi-x-lg" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  }
+</div>

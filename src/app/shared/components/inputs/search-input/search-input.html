@@ -1,0 +1,17 @@
+<div class="search-input">
+  <i class="bi bi-search search-input__icon" aria-hidden="true"></i>
+  <input
+    class="search-input__control"
+    type="search"
+    [value]="value"
+    [placeholder]="placeholder"
+    [attr.aria-label]="ariaLabel"
+    [disabled]="disabled"
+    (input)="onInput($event)"
+  />
+  @if (value) {
+    <button class="search-input__clear" type="button" aria-label="Effacer la recherche" (click)="clear()">
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
+  }
+</div>

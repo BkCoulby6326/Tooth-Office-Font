@@ -3,17 +3,21 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/auth/services/auth.service';
+import { ToastService } from '../../../shared/services/toast.service';
+import { FormInputComponent } from '../../../shared/components/inputs/form-input/form-input';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, FormInputComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly toast = inject(ToastService);
+
 
   readonly loginForm = new FormGroup({
     identifier: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
@@ -22,6 +26,10 @@ export class LoginComponent {
 
   errorMessage = '';
   isSubmitting = false;
+
+  afficherMessage(): void {
+    this.toast.error('Identifiants invalides ou compte non autorisé.');
+  }
 
   submit(): void {
     if (this.loginForm.invalid) {

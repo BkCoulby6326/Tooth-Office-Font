@@ -1,62 +1,42 @@
-<mat-card class="cabinet-card h-100 shadow">
+<article class="cabinet-card">
+  <div class="cabinet-card__media">
+    <img [src]="imageUrl" [alt]="'Façade du cabinet ' + cabinet.nomCabinet" />
+    <span class="cabinet-card__badge">
+      <i class="bi bi-heart-pulse" aria-hidden="true"></i>
+      Cabinet dentaire
+    </span>
+  </div>
 
-    <img
-        mat-card-image
-        [src]="imageUrl"
-        [alt]="cabinet.nomCabinet">
+  <div class="cabinet-card__content">
+    <h2 class="cabinet-card__title">{{ cabinet.nomCabinet }}</h2>
+    <div class="cabinet-card__rating" [attr.aria-label]="'Note : ' + (cabinet.noteMoyenne ?? 0) + ' sur 5'">
+      <span class="cabinet-card__stars" aria-hidden="true">
+        @for (star of stars; track star) {
+          <i class="bi" [class.bi-star-fill]="star <= filledStars(cabinet.noteMoyenne)" [class.bi-star]="star > filledStars(cabinet.noteMoyenne)"></i>
+        }
+      </span>
+      @if (cabinet.nombreAvis) {
+        <span>{{ cabinet.noteMoyenne | number:'1.1-1' }} ({{ cabinet.nombreAvis }} avis)</span>
+      } @else {
+        <span>Nouveau cabinet</span>
+      }
+    </div>
+    <p class="cabinet-card__description">{{ cabinet.description }}</p>
 
-    <mat-card-content>
+    <dl class="cabinet-card__details">
+      <div class="cabinet-card__detail">
+        <dt><i class="bi bi-geo-alt" aria-hidden="true"></i><span>Adresse</span></dt>
+        <dd>{{ cabinet.adresse }}</dd>
+      </div>
+      <div class="cabinet-card__detail">
+        <dt><i class="bi bi-telephone" aria-hidden="true"></i><span>Téléphone</span></dt>
+        <dd>{{ cabinet.tel }}</dd>
+      </div>
+    </dl>
+  </div>
 
-        <h2>
-
-            {{ cabinet.nomCabinet }}
-
-        </h2>
-
-        <p>
-
-            {{ cabinet.description }}
-
-        </p>
-
-        <div class="info">
-
-            <mat-icon>
-
-                location_on
-
-            </mat-icon>
-
-            {{ cabinet.adresse }}
-
-        </div>
-
-        <div class="info">
-
-            <mat-icon>
-
-                phone
-
-            </mat-icon>
-
-            {{ cabinet.tel }}
-
-        </div>
-
-    </mat-card-content>
-
-    <mat-card-actions>
-
-        <button
-            mat-raised-button
-            color="primary"
-            routerLink="/cabinet-detail"
-            [routerLink]="['/cabinet-detail', cabinetId]">
-
-            Voir le cabinet
-
-        </button>
-
-    </mat-card-actions>
-
-</mat-card>
+  <a class="cabinet-card__action" [routerLink]="['/cabinet-detail', cabinet.idCabinet]">
+    Voir le cabinet
+    <i class="bi bi-arrow-right" aria-hidden="true"></i>
+  </a>
+</article>

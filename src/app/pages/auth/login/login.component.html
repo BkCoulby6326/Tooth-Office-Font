@@ -1,5 +1,5 @@
 <div class="main">
-
+  <button (click)="afficherMessage()"></button>
   <div class="auth-card card rounded-4 h-auto ">
    <div class="head rounded-top-4 position-relative">
      <div class="bubble _1"></div>
@@ -16,17 +16,21 @@
 
 
     <form [formGroup]="loginForm" (ngSubmit)="submit()" class="formulaire">
-      <label for="identifier" class="form-label fs-5">Email ou téléphone</label>
-      <div class="position-relative">
-        <i class="bi bi-envelope input-icon"></i>
-        <input id="identifier" class="form-control form-control-lg rounded-4 ps-5" type="text" formControlName="identifier" placeholder="ex. admin@toothoffice.cd ou +243970000010" />
-      </div>
+      <app-form-input
+        label="Email ou téléphone"
+        icon="bi-envelope"
+        placeholder="ex. admin@toothoffice.cd ou +243970000010"
+        autocomplete="username"
+        formControlName="identifier"
+      />
 
-      <label for="motDePasse" class="form-label fs-5">Mot de passe</label>
-      <div class="position-relative">
-        <i class="bi bi-shield-lock input-icon"></i>
-        <input id="motDePasse" type="password" class="form-control ps-5 form-control-lg rounded-4" formControlName="motDePasse" />
-      </div>
+      <app-form-input
+        label="Mot de passe"
+        type="password"
+        icon="bi-shield-lock"
+        autocomplete="current-password"
+        formControlName="motDePasse"
+      />
 
       <button type="submit" [disabled]="isSubmitting" class="btn btn-primary fs-5 rounded-4">Se connecter</button>
     </form>

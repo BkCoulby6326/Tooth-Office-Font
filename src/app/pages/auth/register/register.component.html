@@ -20,77 +20,31 @@
 
      <div class="input-block">
        <div class="input-brick">
-         <label for="nom" class="form-label fs-6">Nom</label>
-         <div class="position-relative">
-           <i class="bi bi-person input-icon"></i>
-           <input
-             id="nom"
-             class="form-control  rounded-4 ps-5"
-             type="text"
-             formControlName="nom"
-             placeholder="Votre nom">
-         </div>
+         <app-form-input label="Nom" icon="bi-person" placeholder="Votre nom" autocomplete="family-name" formControlName="nom" />
        </div>
 
        <div class="input-brick">
-         <label for="prenom" class="form-label fs-6">Prénom</label>
-         <div class="position-relative">
-           <i class="bi bi-person input-icon"></i>
-           <input
-             id="prenom"
-             class="form-control  rounded-4 ps-5"
-             type="text"
-             formControlName="prenom"
-             placeholder="Votre prénom">
-         </div>
+         <app-form-input label="Prénom" icon="bi-person" placeholder="Votre prénom" autocomplete="given-name" formControlName="prenom" />
        </div>
      </div>
       <div class="input-block">
-        <div class="input-brick"><label for="email" class="form-label fs-6">Email</label>
-          <div class="position-relative">
-            <i class="bi bi-envelope input-icon"></i>
-            <input
-              id="email"
-              class="form-control  rounded-4 ps-5"
-              type="email"
-              formControlName="email"
-              placeholder="ex. nom@email.com">
-          </div></div>
+        <div class="input-brick">
+          <app-form-input label="Email" type="email" icon="bi-envelope" placeholder="ex. nom@email.com" autocomplete="email" formControlName="email" />
+        </div>
         <div class="input-brick">
 
-          <label for="telephone" class="form-label fs-6">Téléphone</label>
-          <div class="position-relative">
-            <i class="bi bi-telephone input-icon"></i>
-            <input
-              id="telephone"
-              class="form-control  rounded-4 ps-5"
-              type="text"
-              formControlName="telephone"
-              placeholder="+243 970 000 000">
-          </div>
+          <app-form-input label="Téléphone" type="tel" icon="bi-telephone" placeholder="+243 970 000 000" autocomplete="tel" formControlName="telephone" />
 
         </div>
       </div>
 
       <div class="input-block">
-        <div class="input-brick"><label for="motDePasse" class="form-label fs-6">Mot de passe</label>
-          <div class="position-relative">
-            <i class="bi bi-shield-lock input-icon"></i>
-            <input
-              id="motDePasse"
-              class="form-control  rounded-4 ps-5"
-              type="password"
-              formControlName="motDePasse">
-          </div></div>
-        <div class="input-brick"><label for="confirmationMotDePasse" class="form-label fs-6">Confirmation du mot de passe</label>
-          <div class="position-relative">
-            <i class="bi bi-shield-lock input-icon"></i>
-            <input
-              id="confirmationMotDePasse"
-              class="form-control  rounded-4 ps-5"
-              type="password"
-              formControlName="confirmationMotDePasse">
-          </div></div>
+        <div class="input-brick">
+          <app-form-input label="Mot de passe" type="password" icon="bi-shield-lock" autocomplete="new-password" formControlName="motDePasse" />
+        </div>
+        <div class="input-brick">
+          <app-form-input label="Confirmation du mot de passe" type="password" icon="bi-shield-lock" autocomplete="new-password" formControlName="confirmationMotDePasse" />
+        </div>
       </div>
 
       <label for="role" class="form-label fs-6">Rôle</label>

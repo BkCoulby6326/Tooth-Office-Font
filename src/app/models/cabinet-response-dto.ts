@@ -10,4 +10,8 @@ export interface CabinetResponseDTO {
   logo: string;
 
   description: string;
+
+  noteMoyenne?: number;
+
+  nombreAvis?: number;
 }

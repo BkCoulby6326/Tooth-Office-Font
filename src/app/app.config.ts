@@ -11,7 +11,8 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([loggingInterceptor, authInterceptor])), importProvidersFrom(NgbModule)
+    provideHttpClient(withInterceptors([loggingInterceptor, authInterceptor])),
+    importProvidersFrom(NgbModule),
   ]
 };
 

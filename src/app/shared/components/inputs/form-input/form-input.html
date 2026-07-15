@@ -1,0 +1,21 @@
+<div class="form-input">
+  @if (label) {
+    <label class="form-input__label" [for]="id">{{ label }}</label>
+  }
+  <div class="form-input__field">
+    @if (icon) {
+      <i class="form-input__icon" [class]="'bi ' + icon" aria-hidden="true"></i>
+    }
+    <input
+      class="form-input__control"
+      [id]="id"
+      [type]="type"
+      [value]="value"
+      [placeholder]="placeholder"
+      [autocomplete]="autocomplete"
+      [disabled]="disabled"
+      (input)="updateValue($event)"
+      (blur)="markAsTouched()"
+    />
+  </div>
+</div>

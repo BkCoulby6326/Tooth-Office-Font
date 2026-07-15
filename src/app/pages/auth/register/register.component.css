@@ -114,5 +114,7 @@
 .input-block {
   display: flex;
   gap: 15px;
-  align-items: center;
+  align-items: flex-start;
 }
+
+.input-brick { flex: 1; }

@@ -1,22 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
+import { SearchInputComponent } from '../../../shared/components/inputs/search-input/search-input';
 
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [
-     FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule
-  ],
+  imports: [SearchInputComponent],
   templateUrl: './search-bar.html',
   styleUrl: './search-bar.css',
 })
@@ -30,13 +19,8 @@ export class SearchBar {
   @Output()
   searchChange = new EventEmitter<string>();
 
-  onSearch(): void {
+  onSearch(value: string): void {
+    this.search = value;
     this.searchChange.emit(this.search);
   }
-
-  clear(): void {
-    this.search = '';
-    this.searchChange.emit('');
-  }
-
 }
