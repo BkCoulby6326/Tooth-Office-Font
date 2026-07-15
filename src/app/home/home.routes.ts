@@ -11,9 +11,12 @@ export const HOME_ROUTES: Routes = [
 
     {
         path: 'patient',
+        
         loadComponent: () =>
             import('./pages/home-patient/home-patient')
                 .then(c => c.HomePatient)
     }
+
+
 
 ];

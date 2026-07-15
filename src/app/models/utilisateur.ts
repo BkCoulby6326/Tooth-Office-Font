@@ -1,16 +1,18 @@
+import { RoleEnum } from "./RoleEnum";
+import { StatutCompte } from "./StatutCompte";
+
 export interface Utilisateur {
   id: number;
   nom: string;
   prenom: string;
   email: string;
-  telephone: string;
+  mpd: string;
   adresse: string;
-  role: string;
-
-  // Informations supplémentaires
-  dateNaissance?: string;
-  assurance?: string;
-  specialite?: string;
-  cabinetId?: number;
-  cabinetNom?: string;
+  role: RoleEnum;
+  telephone: string;
+  statutCompte: StatutCompte;
+  createdAt: string;      // LocalDate -> string (YYYY-MM-DD)
+  updatedAt: string;      // LocalDateTime -> string (ISO 8601)
+  createdBy: string;
+  updatedBy: string;
 }

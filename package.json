@@ -23,6 +23,7 @@
     "@ng-bootstrap/ng-bootstrap": "^21.0.0",
     "@popperjs/core": "^2.11.8",
     "@primeuix/themes": "^2.0.3",
+    "boostrap": "^2.0.0",
     "bootstrap": "^5.3.8",
     "primeicons": "^7.0.0",
     "primeng": "^22.0.0-rc.2",

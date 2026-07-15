@@ -16,9 +16,9 @@ export class PrestationService {
     throw new Error('Method not implemented.');
   }
 
-  private apiUrl = environment.apiUrl;
 
   //private http = inject(HttpClient);
+  private apiUrl = `${environment.apiUrl}api`;
 
   constructor(private http: HttpClient) { }
 

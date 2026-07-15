@@ -1,0 +1,38 @@
+<div class="confirmation-dialog">
+    <!-- En-tête avec icône et couleur dynamique -->
+    <h2 mat-dialog-title class="dialog-title text-center fw-bold" [class.text-success]="!isDeleteAction"
+        [class.text-danger]="isDeleteAction">
+        <i class="bi" [class.bi-question-circle-fill]="!isDeleteAction"
+            [class.bi-exclamation-triangle-fill]="isDeleteAction" [class.me-2]="true">
+        </i>
+        {{ isDeleteAction ? 'Confirmation de suppression' : 'Confirmation' }}
+    </h2>
+
+    <mat-dialog-content class="dialog-content text-center px-4 py-3">
+        <p class="mb-0 fs-5" [class.text-black]="isDeleteAction" [class.text-secondary]="!isDeleteAction">
+            {{ data.message }}
+        </p>
+        @if(isDeleteAction){
+        <p class="text-danger mt-2 small">
+            <i class="bi bi-exclamation-circle me-1"></i>
+            Cette action est irréversible
+        </p>
+        }
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="dialog-actions d-flex justify-content-center gap-3 mt-4 pb-2">
+        <button mat-button mat-dialog-close (click)="onCancelClick()" class="btn px-4 py-2 rounded-pill"
+            [class.btn-outline-secondary]="!isDeleteAction" [class.btn-outline-danger]="isDeleteAction">
+            <i class="bi bi-x-circle me-1"></i> Annuler
+        </button>
+
+        <button mat-button mat-dialog-close cdkFocusInitial (click)="onConfirmClick()"
+            class="btn px-4 py-2 rounded-pill fw-semibold" [class.btn-success]="!isDeleteAction"
+            [class.btn-danger]="isDeleteAction">
+            <i class="bi" [class.bi-check-circle]="!isDeleteAction" [class.bi-trash-fill]="isDeleteAction"
+                [class.me-1]="true">
+            </i>
+            {{ isDeleteAction ? 'Supprimer' : 'Confirmer' }}
+        </button>
+    </mat-dialog-actions>
+</div>
