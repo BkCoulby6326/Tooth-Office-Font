@@ -13,7 +13,7 @@ import { SecretaireHeader } from '../../../shared/components/header/secretaire-h
     PublicHeader,
     SearchBar,
     CabinetList,
-    SecretaireHeader
+    
   ],
   templateUrl: './home-public.html',
   styleUrl: './home-public.css',

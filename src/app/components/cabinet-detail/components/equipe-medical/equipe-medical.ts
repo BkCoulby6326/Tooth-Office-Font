@@ -3,7 +3,7 @@ import { SearchBar } from '../../../../home/components/search-bar/search-bar';
 
 @Component({
   selector: 'app-equipe-medical',
-  imports: [SearchBar],
+  imports: [],
   templateUrl: './equipe-medical.html',
   styleUrl: './equipe-medical.css',
 })
