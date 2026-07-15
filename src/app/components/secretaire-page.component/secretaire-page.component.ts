@@ -11,6 +11,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfimDialog } from '../dialogs/confim-dialog/confim-dialog';
 import { SnackbarService } from '../../Services/snackbarService/snackbar-service';
+import { AuthService } from '../../core/auth/services/auth.service';
+import { UserProfile } from '../../core/auth/models/auth.model';
 
 
 
@@ -30,12 +32,14 @@ export class SecretairePageComponent implements OnInit {
   rdvList: any[] = [];
   patientList: any[] = [];
   loading: boolean = false;
+  user?: UserProfile;
   constructor(
     private rdvService: RendezVousService,
     private cabinetPrestationService: CabinetPrestation,
     private cd: ChangeDetectorRef,
     private dialog: MatDialog,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private authService: AuthService
   ) {
 
   }
@@ -68,6 +72,13 @@ export class SecretairePageComponent implements OnInit {
     creneauId: null
 
   };
+
+  getUserInfo(){
+   this.authService.getProfile().subscribe((response: UserProfile) => {
+    this.user= response
+    console.log("user ", this.user);
+   })
+  }
 
 
   filtrerPatients() {
@@ -206,17 +217,21 @@ export class SecretairePageComponent implements OnInit {
       (response: any) => {
 
         this.dentistes = response;
-        console.log("les dentistes ", this.dentistes);
 
       },
       (error: any) => {
-        this.snackbarService.error("Erreur lors de la récupération des dentistes");
+        this.snackbarService.error("Vérifier votre connexion");
         console.error('Erreur lors de la récupération des dentistes:', error);
       }
     );
   }
 
   getPrestationsByCabinet() {
+    this.getUserInfo();
+
+    if (!this.user) {
+      return;
+    }
     this.cabinetPrestationService.getByCabinet(2).subscribe(
       (response: any) => {
         if (response.statut === 'OK') {
@@ -227,32 +242,40 @@ export class SecretairePageComponent implements OnInit {
         if(response.statut === 'KO') this.snackbarService.error(response.message);
       },
       (error: any) => {
-        console.error('Erreur lors de la récupération des prestations du cabinet:', error);
-        this.snackbarService.error("Erreur lors de la récupération des prestations du cabinet");
+        
+        this.snackbarService.error("Verifier votre connexion");
       }
     );
 
   }
 
-  getRendezVousByCabinet() {
-    this.loading = true; // Start loading
-    this.rdvService.getByCabinet(2).subscribe(
-      (response: any) => {
-        this.loading = false;
-        if (response.statut === 'OK') {
-          this.rdvList = response.data;
-          this.cd.detectChanges();
+  getRendezVousByCabinet(): void {
+  this.getUserInfo();
 
-        }
-        if(response.statut === 'KO') this.snackbarService.error(response.message);
-      },
-      (error: any) => {
-        this.loading = false; // Stop loading
-        this.snackbarService.error("Erreur lors de la récupération des rendez-vous du cabinet");
-        console.error('Erreur lors de la récupération des rendez-vous du cabinet:', error);
-      }
-    );
+  if (!this.user) {
+    return;
   }
+
+  this.loading = true;
+
+  this.rdvService.getByCabinet(this.user.id).subscribe({
+    next: (response: any) => {
+      this.loading = false;
+
+      if (response.statut === 'OK') {
+        this.rdvList = response.data;
+        this.cd.detectChanges()
+      } else {
+        this.snackbarService.error(response.message);
+      }
+    },
+
+    error: () => {
+      this.loading = false;
+      this.snackbarService.error("Vérifiez votre connexion");
+    }
+  });
+}
 
   getPatients() {
     this.cabinetPrestationService.getPatientsCabinet().subscribe(
@@ -261,8 +284,9 @@ export class SecretairePageComponent implements OnInit {
         this.cd.detectChanges();
       },
       (error: any) => {
-        this.snackbarService.error("Erreur lors de la récupération des patients du cabinet");
-        console.error('Erreur lors de la récupération des patients du cabinet:', error);
+        this.loading= false
+        this.snackbarService.error("Vérifier votre connexion");
+        
       }
     );
   }
@@ -313,7 +337,7 @@ export class SecretairePageComponent implements OnInit {
       (error: any) => {
         this.loading = false;
         console.error(error);
-        this.snackbarService.error("Une erreur est survenue lors de la suppression du rendez-vous.");
+        this.snackbarService.error("Vérifier votre connexion.");
       }
     );
   }

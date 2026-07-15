@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { roleGuard } from './core/auth/guards/role.guard';
+import { SecretairePageComponent } from './components/secretaire-page.component/secretaire-page.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +23,8 @@ export const routes: Routes = [
     path: 'cabinet/gestion',
     loadComponent: () => import('./soin-tarif/soin-tarif').then((m) => m.SoinTarifComponent),
     pathMatch: 'full',
+    canActivate: [roleGuard],
+    data: { roles: ['ADMIN_SYSTEM', 'CHEF_CABINET', 'DENTISTE'] },
   },
 
    {
@@ -36,9 +40,19 @@ export const routes: Routes = [
             import('./components/cabinet-detail/route.cabinet-detail')
                 .then(r => r.CABINETDETAIL_ROUTES)
     },
-    {path: 'admin',loadComponent: () => import('./components/admin/admin').then(c => c.Admin)},
+    {
+      path: 'admin',
+      loadComponent: () => import('./components/admin/admin').then(c => c.Admin),
+      canActivate: [roleGuard],
+      data: { roles: ['ADMIN_SYSTEM'] }
+    },
+
+ 
 
   {
+    path: "secretaire",
+    component: SecretairePageComponent
+  }, {
     path: '**',
     redirectTo: '',
   },

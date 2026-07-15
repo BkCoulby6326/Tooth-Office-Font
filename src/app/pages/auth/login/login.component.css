@@ -12,6 +12,7 @@
 .formulaire {
   padding : 40px;
   padding-bottom: 0;
+  width: 500px;
 }
 .form-control {
   margin-bottom: 20px;

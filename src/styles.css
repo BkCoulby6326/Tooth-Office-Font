@@ -15,6 +15,7 @@ body {
   font-family: "Jost", sans-serif;
   background-color: var(--surface-color);
   color: var(--text-color);
+  margin: 0;
 }
 
 .btn-primary {
@@ -31,4 +32,7 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(0, 181, 156, 0.25);
 }
 
+.form-control::placeholder {
+  opacity: 0.3;
+}
 

@@ -12,6 +12,7 @@
 .formulaire {
   padding : 40px;
   padding-bottom: 0;
+  padding-top: 25px;
   width: auto;
 }
 .form-control {
@@ -66,7 +67,7 @@
   overflow: hidden;
   background: var(--primary-color);
   height: 170px;
-  padding-top: 20px;
+  padding-top: 15px;
 
   h3 {
 
