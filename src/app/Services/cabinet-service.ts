@@ -13,7 +13,7 @@ import { CabinetResponseDTO } from '../models/cabinet-response-dto';
 @Service()
 export class CabinetService {
     private readonly http = inject(HttpClient);
-  private readonly url = `${environment.apiUrl}api/cabinets`;
+  private readonly url = `${environment.apiUrl}/cabinets`;
 
 
 
