@@ -1,0 +1,49 @@
+.table-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    font-family: 'Segoe UI', sans-serif;
+    max-width: 1000px;
+    margin: 50px;
+}
+
+h2 {
+    font-size: 22px;
+    color: #333333;
+    margin-bottom: 25px;
+}
+
+/* Structure de la grille */
+.table-header, .table-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+/* Style de l'en-tête */
+.table-header {
+    font-size: 16px;
+    font-weight: 700;
+    color: #8898aa;
+    letter-spacing: 0.5px;
+
+}
+
+/* Styles des colonnes */
+
+
+/* Couleur spécifique pour les prix */
+
+
+/* Enlève la bordure du bas pour la dernière ligne */
+.table-row:last-child {
+    border-bottom: none;
+}
+
+.price {
+    color: #07bf16;
+    font-weight: 600;
+}

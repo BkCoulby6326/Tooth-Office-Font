@@ -1,0 +1,78 @@
+.review-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    max-width: 400px;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: 30px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #000;
+    margin: 0 0 15px 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #8898aa;
+    margin-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+/* Étoiles */
+.stars {
+    font-size: 28px;
+    color: #ffaa5e; /* Couleur orange des étoiles */
+    cursor: pointer;
+}
+
+/* Zone de texte */
+textarea {
+    width: 100%;
+    height: 100px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f1f5f9;
+    color: #777;
+    font-size: 14px;
+    resize: none;
+    box-sizing: border-box;
+}
+
+textarea:focus {
+    outline: 2px solid #e2e8f0;
+}
+
+/* Bouton */
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #e2e8f0;
+    color: #64748b;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #cbd5e1;
+}
