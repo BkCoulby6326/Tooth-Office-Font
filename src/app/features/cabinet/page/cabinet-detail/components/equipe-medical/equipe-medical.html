@@ -1,0 +1,73 @@
+<div class="medical-team-container">
+  <div class="header-section">
+    <h1>L'équipe médicale du cabinet</h1>
+    <p>Cliquez sur un médecin ci-dessous pour consulter son planning et prendre rendez-vous.</p>
+  </div>
+
+  <!-- Barre de recherche et filtres-->
+  <div class="search-filter-bar">
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Rechercher un médecin</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        type="text"
+        placeholder="Rechercher par nom..."
+        [(ngModel)]="rechercheNom"
+        (input)="appliquerFiltres()"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Filtrer par soin</mat-label>
+      <mat-icon matPrefix>filter_list</mat-icon>
+      <mat-select [(ngModel)]="specialiteSelectionnee" (selectionChange)="appliquerFiltres()">
+        <mat-option value="">Tous les services</mat-option>
+        @for (spec of specialites; track spec) {
+          <mat-option [value]="spec">{{ spec }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Grille des praticiens -->
+  <div class="doctors-grid">
+    @for (medecin of dentistesFiltres; track medecin.id) {
+      <mat-card class="doctor-card" appearance="outlined">
+        <mat-card-content class="card-content-layout">
+
+          <div class="avatar-container">
+            <div class="avatar">
+              <!-- Utilisation de la méthode getInitials présente dans votre TS -->
+              {{ getInitials(medecin.prenom, medecin.nom) }}
+            </div>
+          </div>
+
+          <div class="info-container">
+            <h3>Dr. {{ medecin.prenom }} {{ medecin.nom }}</h3>
+            <span class="specialty">{{ medecin.specialite | uppercase }}</span>
+            <p class="description">
+              Spécialiste qualifié en {{ medecin.specialite.toLowerCase() }} dédié à votre santé bucco-dentaire au sein de notre cabinet.
+            </p>
+          </div>
+
+        </mat-card-content>
+
+        <mat-divider></mat-divider>
+
+        <mat-card-actions class="card-action-layout">
+          <a mat-button color="primary" [routerLink]="['/prendre-rendez-vous', medecin.id]">
+            PRENDRE RENDEZ-VOUS
+          </a>
+          <button mat-icon-button color="primary" [routerLink]="['/prendre-rendez-vous', medecin.id]">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    } @empty {
+      <div class="no-results">
+        <p>Aucun médecin ne correspond à vos critères de recherche.</p>
+      </div>
+    }
+  </div>
+</div>
