@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialog } from '../../dialogs/confim-dialog/confim-dialog';
+import { ConfimDialog } from '../../dialogs/confim-dialog/confim-dialog';
 
 @Component({
   selector: 'app-gestion-utilisateurs',
@@ -52,11 +52,15 @@ export class GestionUtilisateurs {
   }
 
   supprimer(id:number){
-    const dialogRef = this.dialog.open(ConfirmDialog, {
+    const dialogRef=this.dialog.open(ConfimDialog, {
       
-      data: { message: 'Êtes-vous sûr de vouloir supprimer cet utilisateur ?' },
-      isDelete: true
+     
+      data: { message: 'Êtes-vous sûr de vouloir supprimer cet utilisateur ?',
+         isDelete: true
+       },
     });
+
+    
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
