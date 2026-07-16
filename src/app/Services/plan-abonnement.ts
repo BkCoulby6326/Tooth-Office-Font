@@ -13,7 +13,7 @@ export type PlanAbonnementDTO = Partial<PlanAbonnement>;
 })
 export class PlanAbonnementService {
   private readonly http = inject(HttpClient);
-  private  apiUrl = environment.apiUrl + 'api/plan_abonnement'; 
+  private  apiUrl = environment.apiUrl + '/plan_abonnement'; 
 
   /**
    * CREATE : POST /api/plan_abonnement
