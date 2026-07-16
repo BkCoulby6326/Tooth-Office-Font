@@ -1,13 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, inject, ViewChild } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableModule, MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { Cabinet } from '../../../models/cabinet';
 import { CabinetService } from '../../../Services/cabinet-service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfimDialog } from '../../dialogs/confim-dialog/confim-dialog';
 
 
 
@@ -20,12 +23,13 @@ import { CabinetService } from '../../../Services/cabinet-service';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
-    MatIconModule],
+    MatIconModule,
+    MatPaginator,],
   templateUrl: './cabinets.html',
   styleUrl: './cabinets.css',
 })
-export class Cabinets {
-  constructor(private cd: ChangeDetectorRef) { }
+export class Cabinets implements AfterViewInit {
+  constructor(private cd: ChangeDetectorRef, private dialog: MatDialog) { }
 
   private cabinetService = inject(CabinetService);
 
@@ -36,45 +40,31 @@ export class Cabinets {
     'actions'
   ];
 
-  cabinets: Cabinet[] = [];
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.cabinets.paginator = this.paginator;
+  }
+
+  cabinets = new MatTableDataSource<Cabinet>([]);
   ngOnInit() {
     this.recupererCabinets();
   }
-
-  // cabinets = [
-  //   {
-  //     id: 1,
-  //     nom: 'Cabinet Dental Plus',
-  //     contact: '+223 70 00 00 01',
-  //     note: 4.8
-  //   },
-  //   {
-  //     id: 2,
-  //     nom: 'Smile Care',
-  //     contact: '+223 70 00 00 02',
-  //     note: 4.5
-  //   },
-  //   {
-  //     id: 3,
-  //     nom: 'Tooth Office',
-  //     contact: '+223 70 00 00 03',
-  //     note: 5
-  //   }
-  // ];
 
   private fb = inject(FormBuilder);
 
   cabinetForm = this.fb.group({
 
-    nomCabinet:[''],
+    nomCabinet: [''],
 
-    adresse:[''],
+    adresse: [''],
 
-    tel:[''],
+    tel: [''],
 
-    logo:[''],
+    logo: [''],
 
-    description:['']
+    description: ['']
 
   });
 
@@ -82,8 +72,7 @@ export class Cabinets {
     this.cabinetService.getAll().subscribe({
 
       next: (data) => {
-
-        this.cabinets = data;
+        this.cabinets.data = data;
         this.cd.detectChanges();
         //confirm('Cabinets récupérés avec succès !');
         console.log(data);
@@ -95,38 +84,54 @@ export class Cabinets {
     });
   }
 
-   enregistrer() {
-      if (this.cabinetForm.invalid) return;
-  
+  enregistrer() {
+    if (this.cabinetForm.invalid) return;
+
     this.cabinetService.create(this.cabinetForm.value as Cabinet)
       .subscribe({
-  
-        next: () => {
-  
-          this.recupererCabinets();
-  
-          this.cabinetForm.reset();
-  
-        },
-  
-        error: err => console.log(err)
-  
-      });
-    }
-  
-    supprimer(id: number) {
-  
-    // if (!confirm('Supprimer ce cabinet ?')) return;
-  
-    // this.cabinetService.delete(id).subscribe({
-  
-    //   next: () => {
-  
-    //     this.loadCabinets();
-  
-    //   }
-  
-    // });
-    }
 
+        next: () => {
+
+          this.recupererCabinets();
+
+          this.cabinetForm.reset();
+
+        },
+
+        error: err => console.log(err)
+
+      });
+  }
+
+  supprimer(id: number) {
+
+    const dialogRef = this.dialog.open(ConfimDialog, {
+      data: {
+        message: 'Voulez-vous vraiment supprimer ce cabinet ?',
+        isDelete: true
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result) {
+
+        this.cabinetService.delete(id).subscribe(() => {
+
+          console.log("Cabinet supprimé");
+
+          // Recharger la liste
+          this.recupererCabinets();
+
+        });
+
+      }
+
+    });
+
+  }
 }
+
+
+
+

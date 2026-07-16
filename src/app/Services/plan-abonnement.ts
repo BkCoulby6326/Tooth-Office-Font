@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PlanAbonnement } from '../models/plan-abonnement'; // Ajustez le chemin
+import { environment } from '../../environments/environment.development';
 
 // Si votre DTO est différent de l'entité, créez une interface PlanAbonnementDTO
 // Sinon, réutilisez PlanAbonnement
@@ -12,7 +13,7 @@ export type PlanAbonnementDTO = Partial<PlanAbonnement>;
 })
 export class PlanAbonnementService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = '/api/plan_abonnement'; // URL relative si proxy configuré, ou absolue
+  private  apiUrl = environment.apiUrl + '/plan_abonnement'; 
 
   /**
    * CREATE : POST /api/plan_abonnement

@@ -8,13 +8,15 @@ import { CabinetDTO } from '../../../models/cabinet-dto';
 import { CabinetCard } from '../cabinet-card/cabinet-card';
 import { CabinetService } from '../../../Services/cabinet-service';
 import { CabinetResponseDTO } from '../../../models/cabinet-response-dto';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-cabinet-list',
   standalone: true,
   imports: [
     CommonModule,
-    CabinetCard
+    CabinetCard,
+    MatProgressSpinnerModule
   ],
   templateUrl: './cabinet-list.html',
   styleUrl: './cabinet-list.css',
@@ -27,8 +29,14 @@ export class CabinetList implements OnInit {
 
   loading = false;
 
+  private allCabinets: CabinetResponseDTO[] = [];
+  private searchTerm = '';
+
   @Input()
-  search = '';
+  set search(value: string) {
+    this.searchTerm = value;
+    this.filterCabinets();
+  }
 
   cabinets: CabinetResponseDTO[] = [];
 
@@ -37,18 +45,6 @@ export class CabinetList implements OnInit {
     this.loadCabinets();
     
   }
-
-  ngOnChanges(): void {
-     if (this.search==='') {
-       this.loadCabinets();
-      }else {
-        this.searchCabinet();
-      }
-  }
-
-
-
-  
 
   loadCabinets(): void {
 
@@ -60,8 +56,9 @@ export class CabinetList implements OnInit {
     next: (response) => {
 
       
-      this.cabinets = response;
+      this.allCabinets = response;
       this.loading = false;
+      this.filterCabinets();
       
       console.log('Réponse reçue', response);
       console.log('Après la requête :', this.loading);
@@ -85,31 +82,23 @@ export class CabinetList implements OnInit {
 
 }
 
-   searchCabinet(): void {
+  private filterCabinets(): void {
+    const term = this.normalize(this.searchTerm);
 
-    this.loading = true;
+    this.cabinets = term
+      ? this.allCabinets.filter((cabinet) =>
+          [cabinet.nomCabinet, cabinet.adresse, cabinet.description, cabinet.tel]
+            .some((value) => this.normalize(value).includes(term))
+        )
+      : this.allCabinets;
 
-    this.cabinetService.getByNom(this.search).subscribe({
-
-      next: (cabinet) => {
-        
-        this.loading = false;
-        this.cabinets = [cabinet];
-        this.cdr.markForCheck();
-
-      },
-
-      error: () => {
-
-        this.cabinets = [];
-
-        this.loading = false;
-        this.cdr.markForCheck();
-
-      }
-
-    });
-
+    this.cdr.markForCheck();
   }
-  
+
+  private normalize(value: string | null | undefined): string {
+    return (value ?? '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+  }
 }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HeroBanner } from '../../components/hero-banner/hero-banner';
-import { PatientHeader } from '../../../shared/components/header/patient-header/patient-header';
 import { SearchBar } from '../../components/search-bar/search-bar';
 import { CabinetList } from '../../components/cabinet-list/cabinet-list';
 
@@ -9,7 +8,6 @@ import { CabinetList } from '../../components/cabinet-list/cabinet-list';
   standalone: true,
   imports: [
     HeroBanner,
-    PatientHeader,
     SearchBar,
     CabinetList
   ],
