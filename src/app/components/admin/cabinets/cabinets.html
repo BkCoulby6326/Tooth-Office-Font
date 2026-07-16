@@ -44,18 +44,12 @@
 
                 <mat-label>Description</mat-label>
 
-                <textarea
-                    matInput
-                    rows="4"
-                    formControlName="description">
+                <textarea matInput rows="4" formControlName="description">
                 </textarea>
 
             </mat-form-field>
 
-            <button
-                mat-flat-button
-                class="create-btn"
-                (click)="enregistrer()">
+            <button mat-flat-button class="create-btn" (click)="enregistrer()">
 
                 Créer le cabinet
 
@@ -68,107 +62,108 @@
     <!-- ================= TABLEAU ================= -->
 
     <div class="table-card">
+        <div class="mat-shadow-2">
 
-        <h3>Liste des cabinets d'enregistrement</h3>
+            <h3>Liste des cabinets d'enregistrement</h3>
 
-        <table
-            mat-table
-            [dataSource]="cabinets">
+            <table mat-table [dataSource]="cabinets">
 
-             <!-- Cabinet -->
+                <!-- Cabinet -->
 
-            <ng-container matColumnDef="cabinet">
+                <ng-container matColumnDef="cabinet">
 
-                <th mat-header-cell *matHeaderCellDef>
+                    <th mat-header-cell *matHeaderCellDef>
 
-                    Cabinet
+                        Cabinet
 
-                </th>
+                    </th>
 
-                <td mat-cell *matCellDef="let c">
+                    <td mat-cell *matCellDef="let c">
 
-                    {{c.nomCabinet}}
+                        {{c.nomCabinet}}
 
-                </td>
+                    </td>
 
-            </ng-container>
+                </ng-container>
 
-            <!-- Contact -->
+                <!-- Contact -->
 
-            <ng-container matColumnDef="contact">
+                <ng-container matColumnDef="contact">
 
-                <th mat-header-cell *matHeaderCellDef>
+                    <th mat-header-cell *matHeaderCellDef>
 
-                    Contact
+                        Contact
 
-                </th>
+                    </th>
 
-                <td mat-cell *matCellDef="let c">
+                    <td mat-cell *matCellDef="let c">
 
-                    {{c.tel}}
+                        {{c.tel}}
 
-                </td>
+                    </td>
 
-            </ng-container>
+                </ng-container>
 
-            <!-- Note -->
+                <!-- Note -->
 
-            <ng-container matColumnDef="note">
+                <ng-container matColumnDef="note">
 
-                <th mat-header-cell *matHeaderCellDef>
+                    <th mat-header-cell *matHeaderCellDef>
 
-                    Note
+                        Note
 
-                </th>
+                    </th>
 
-                <td mat-cell *matCellDef="let c">
+                    <td mat-cell *matCellDef="let c">
 
-                     {{c.adresse}}
+                        {{c.adresse}}
 
-                </td>
-                <td mat-cell *matCellDef="let c">
+                    </td>
+                    <td mat-cell *matCellDef="let c">
 
-                     {{c.description}}
+                        {{c.description}}
 
-                </td>
+                    </td>
 
-            </ng-container>
+                </ng-container>
 
-            <!-- Actions -->
+                <!-- Actions -->
 
-            <ng-container matColumnDef="actions">
+                <ng-container matColumnDef="actions">
 
-                <th mat-header-cell *matHeaderCellDef>
+                    <th mat-header-cell *matHeaderCellDef>
 
-                    Actions
+                        Actions
 
-                </th>
+                    </th>
 
-                <td mat-cell *matCellDef="let c">
+                    <td mat-cell *matCellDef="let c">
 
-                    <button mat-icon-button color="primary">
+                        <button mat-icon-button color="primary">
 
-                        <mat-icon>edit</mat-icon>
+                            <mat-icon>edit</mat-icon>
 
-                    </button>
+                        </button>
 
-                    <button mat-icon-button color="warn" (click)="supprimer(c.id!)">
 
-                        <mat-icon>delete</mat-icon>
+                        <button mat-icon-button color="warn" (click)="supprimer(c.idCabinet!)">
 
-                    </button>
+                            <mat-icon>delete</mat-icon>
 
-                </td>
+                        </button>
 
-            </ng-container>
+                    </td>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                </ng-container>
 
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
 
-        
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-        </table>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]">
+            </mat-paginator>
+        </div>
 
     </div>
 

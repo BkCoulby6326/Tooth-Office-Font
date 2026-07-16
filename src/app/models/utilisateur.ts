@@ -15,4 +15,7 @@ export interface Utilisateur {
   updatedAt: string;      // LocalDateTime -> string (ISO 8601)
   createdBy: string;
   updatedBy: string;
+
+  specialite?:string;
+  nomCabinet?:string;
 }
