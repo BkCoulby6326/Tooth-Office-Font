@@ -1,18 +1,18 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment.development';
-import { RendezVous } from '../../core/models/rendez-vous/rendez-vous';
-import { ResponseApi } from '../../core/models/ResponseApi';
 import { RendezVousCreate } from '../../core/models/rendez-vous/rdv-create';
+import { RendezVous } from '../../core/models/rendez-vous/rendez-vous';
+import { environment } from '../../../environments/environment.development';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class RendezVousService {
   private readonly http = inject(HttpClient);
- // private readonly url = `${environment.apiUrl}/rendez-vous`;
-  private   url =   '/rendez-vous';
+  // private readonly url = `${environment.apiUrl}/v1/rendez-vous`;
+  private url = `${environment.apiUrl}/v1/rendez-vous`;
 
   prendre(rdv: RendezVousCreate): Observable<RendezVous> {
     return this.http.post<RendezVous>(`${this.url}/prendre`, rdv);
