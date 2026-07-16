@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { roleGuard } from './core/auth/guards/role.guard';
 import { SecretairePageComponent } from './components/secretaire-page.component/secretaire-page.component';
+import { Gestioncabinet } from './components/gestioncabinet/gestioncabinet';
 
 export const routes: Routes = [
   {
@@ -19,13 +20,6 @@ export const routes: Routes = [
   // },
   { path: 'dashboard', redirectTo: 'accueil', pathMatch: 'full' },
   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
-  {
-    path: 'cabinet/gestion',
-    loadComponent: () => import('./soin-tarif/soin-tarif').then((m) => m.SoinTarifComponent),
-    pathMatch: 'full',
-    canActivate: [roleGuard],
-    data: { roles: ['ADMIN_SYSTEM', 'CHEF_CABINET', 'DENTISTE'] },
-  },
 
    {
         path: '',
@@ -47,14 +41,18 @@ export const routes: Routes = [
       data: { roles: ['ADMIN_SYSTEM'] }
     },
 
- 
-
   {
     path: "secretaire",
     component: SecretairePageComponent
-  }, {
+  },
+  {
+    path: "gestion",
+    component: Gestioncabinet
+  }
+  , {
     path: '**',
     redirectTo: '',
-  },
+  }
+
 ];
 
