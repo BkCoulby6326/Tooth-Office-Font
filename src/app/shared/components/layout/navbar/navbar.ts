@@ -4,9 +4,14 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { AuthService } from '../../../../core/auth/services/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 import { NAVIGATION_ITEMS, NavItem, UserRole } from '../../../../core/navigation/navigation.model';
-import { UserProfile } from '../../../../core/auth/models/auth.model';
+import { UserProfile } from '../../../../core/models/auth/auth.model';
+
+/** Lien unique affiché aux visiteurs non connectés. */
+const GUEST_NAV: readonly NavItem[] = [
+  { label: 'Accueil', route: '/', icon: 'home' },
+];
 
 @Component({
   selector: 'app-navbar',
@@ -21,8 +26,17 @@ export class Navbar {
   readonly currentUser$ = this.authService.currentUser$;
 
   visibleItems(user: UserProfile | null): readonly NavItem[] {
-    const role = user?.role as UserRole | undefined;
-    return NAVIGATION_ITEMS.filter((item) => !item.roles || (!!role && item.roles.includes(role)));
+    if (!user) {
+      // Visiteur non connecté → Accueil uniquement
+      return GUEST_NAV;
+    }
+
+    const role = user.role as UserRole;
+
+    // On filtre les items qui correspondent à ce rôle
+    return NAVIGATION_ITEMS.filter(
+      (item) => item.roles?.includes(role) ?? false
+    );
   }
 
   logout(): void {

@@ -1,0 +1,108 @@
+<div class="profile-page py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <div class="profile-card" *ngIf="currentUser$ | async as user">
+          
+          <!-- En-tête du profil -->
+          <div class="profile-header text-center p-4 rounded-top-4">
+            <div class="avatar-container mb-3">
+              <div class="avatar-placeholder">
+                {{ (user.prenom?.[0] || '') + (user.nom?.[0] || '') | uppercase }}
+              </div>
+            </div>
+            <h2 class="fw-bold mb-1 text-white">{{ user.prenom }} {{ user.nom }}</h2>
+            <span class="role-badge text-uppercase">{{ user.role }}</span>
+          </div>
+
+          <!-- Corps du profil -->
+          <div class="profile-body p-4 p-md-5">
+            <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+              
+              <div class="row g-4">
+                
+                <!-- Prénom -->
+                <div class="col-md-6">
+                  <app-form-input
+                    label="Prénom"
+                    icon="bi-person"
+                    placeholder="Votre prénom"
+                    formControlName="prenom"
+                  />
+                </div>
+
+                <!-- Nom -->
+                <div class="col-md-6">
+                  <app-form-input
+                    label="Nom"
+                    icon="bi-person"
+                    placeholder="Votre nom"
+                    formControlName="nom"
+                  />
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-12">
+                  <app-form-input
+                    label="Adresse Email"
+                    icon="bi-envelope"
+                    placeholder="ex. nom@email.com"
+                    formControlName="email"
+                  />
+                  <small class="text-muted mt-1 d-block" *ngIf="isEditing">
+                    L'adresse email ne peut pas être modifiée.
+                  </small>
+                </div>
+
+                <!-- Téléphone -->
+                <div class="col-md-6">
+                  <app-form-input
+                    label="Téléphone"
+                    icon="bi-telephone"
+                    placeholder="+223 70 00 00 00"
+                    formControlName="telephone"
+                  />
+                </div>
+
+                <!-- Adresse -->
+                <div class="col-md-6">
+                  <app-form-input
+                    label="Adresse"
+                    icon="bi-geo-alt"
+                    placeholder="Bamako, Mali"
+                    formControlName="adresse"
+                  />
+                </div>
+
+              </div>
+
+              <!-- Actions -->
+              <div class="profile-actions d-flex justify-content-end gap-3 mt-5">
+                <ng-container *ngIf="!isEditing; else editButtons">
+                  <button mat-flat-button color="primary" type="button" (click)="toggleEdit()" class="btn-action">
+                    <mat-icon class="me-2">edit</mat-icon>
+                    Modifier le profil
+                  </button>
+                </ng-container>
+
+                <ng-template #editButtons>
+                  <button mat-stroked-button type="button" (click)="toggleEdit()" [disabled]="isSaving" class="btn-action">
+                    Annuler
+                  </button>
+                  <button mat-flat-button color="primary" type="submit" [disabled]="profileForm.invalid || isSaving" class="btn-action">
+                    <mat-icon class="me-2" *ngIf="!isSaving">save</mat-icon>
+                    {{ isSaving ? 'Enregistrement...' : 'Enregistrer' }}
+                  </button>
+                </ng-template>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

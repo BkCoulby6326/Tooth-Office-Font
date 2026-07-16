@@ -1,0 +1,90 @@
+.placeholder-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f0fdf7 0%, #e8f5f0 100%);
+}
+
+.placeholder-container {
+  text-align: center;
+  padding: 3rem 2.5rem;
+  background: #ffffff;
+  border-radius: 1.5rem;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  max-width: 520px;
+  width: 90%;
+}
+
+.placeholder-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1.5rem;
+}
+
+.placeholder-icon.green {
+  background: #e9fbf3;
+  color: #00a76f;
+}
+
+h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #16213e;
+  margin: 0 0 0.75rem;
+}
+
+.placeholder-subtitle {
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 2rem;
+}
+
+.placeholder-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.placeholder-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.2rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  color: #16213e;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.placeholder-link:hover {
+  background: #e8f5f0;
+  border-color: #00a76f;
+  color: #00a76f;
+}
+
+.placeholder-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fff8e6;
+  color: #b45309;
+  border: 1px solid #fde68a;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+}
