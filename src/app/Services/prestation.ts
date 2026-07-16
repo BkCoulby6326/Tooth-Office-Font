@@ -9,6 +9,12 @@ import { environment } from '../../environments/environment.development';
   providedIn: 'root'
 })
 export class PrestationService {
+  ajouterPrestation(prestation: Prestation) {
+    throw new Error('Method not implemented.');
+  }
+  getPrestations() {
+    throw new Error('Method not implemented.');
+  }
 
 
   //private http = inject(HttpClient);
@@ -19,30 +25,30 @@ export class PrestationService {
   //Ajouter une prestation
 
   create(prestation: Prestation): Observable<Prestation> {
-    return this.http.post<Prestation>(`${this.apiUrl}/prestations`, prestation);
+    return this.http.post<Prestation>(`${this.apiUrl}/prestation`, prestation);
   }
 
   // Récupérer toutes les prestations
 
   getAll(): Observable<Prestation[]> {
-    return this.http.get<Prestation[]>(`${this.apiUrl}/prestations`);
+    return this.http.get<Prestation[]>(`${this.apiUrl}/prestation`);
   }
 
   //Récupérer une prestation
 
   getById(id: number): Observable<Prestation> {
-    return this.http.get<Prestation>(`${this.apiUrl}/prestations/${id}`);
+    return this.http.get<Prestation>(`${this.apiUrl}/prestation/${id}`);
   }
 
   // Modifier une prestation
 
   update(id: number, prestation: Prestation): Observable<Prestation> {
-    return this.http.put<Prestation>(`${this.apiUrl}/prestations/${id}`, prestation);
+    return this.http.put<Prestation>(`${this.apiUrl}/prestation/${id}`, prestation);
   }
 
   //Supprimer une prestation
 
   delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/prestations/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/prestation/${id}`);
   }
 }

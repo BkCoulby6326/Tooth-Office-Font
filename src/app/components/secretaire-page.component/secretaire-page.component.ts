@@ -1,7 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RendezVousService } from '../../Services/rendez-vous';
-import { Consultation } from '../../Services/consultation-service/consultation';
-import { ResponseApi } from '../../models/ResponseApi';
 import { CabinetPrestation } from '../../Services/cabinetPrestation/cabinet-prestation';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -11,13 +9,17 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfimDialog } from '../dialogs/confim-dialog/confim-dialog';
 import { SnackbarService } from '../../Services/snackbarService/snackbar-service';
+import { AuthService } from '../../core/auth/services/auth.service';
+import { UserProfile } from '../../core/auth/models/auth.model';
+
 
 
 
 
 @Component({
   selector: 'app-secretaire-page.component',
-  imports: [FormsModule, DatePipe, MatProgressSpinnerModule
+  imports: [FormsModule, DatePipe, MatProgressSpinnerModule,
+
 
   ],
   templateUrl: './secretaire-page.component.html',
@@ -30,28 +32,49 @@ export class SecretairePageComponent implements OnInit {
   rdvList: any[] = [];
   patientList: any[] = [];
   loading: boolean = false;
-  constructor(
-    private rdvService: RendezVousService,
-    private cabinetPrestationService: CabinetPrestation,
-    private cd: ChangeDetectorRef,
-    private dialog: MatDialog,
-    private snackbarService: SnackbarService
-  ) {
-
-  }
-
-  ngOnInit(): void {
-    this.getDentistes();
-    this.getPrestationsByCabinet();
-    this.getRendezVousByCabinet();
-    this.getPatients();
-  }
+  user?: UserProfile;
 
   patientRecherche = '';
 
   patientSelectionne: any = null;
 
   patientsFiltres: any[] = [];
+
+
+  constructor(
+    private rdvService: RendezVousService,
+    private cabinetPrestationService: CabinetPrestation,
+    private cd: ChangeDetectorRef,
+    private dialog: MatDialog,
+    private snackbarService: SnackbarService,
+    private authService: AuthService,
+
+  ) {
+
+  }
+
+  ngOnInit(): void {
+    this.loading = true;
+
+    this.authService.getProfile().subscribe({
+      next: (user) => {
+        this.user = user;
+
+
+        this.getDentistes();
+        this.getPrestationsByCabinet();
+        this.getRendezVousByCabinet();
+        this.getPatients();
+      },
+
+      error: () => {
+        this.snackbarService.error("Impossible de récupérer les informations utilisateur");
+        this.loading = false;
+      }
+    });
+  }
+
+
 
   nouveauRdv: RendezVousCreate = {
 
@@ -68,6 +91,8 @@ export class SecretairePageComponent implements OnInit {
     creneauId: null
 
   };
+
+
 
 
   filtrerPatients() {
@@ -111,7 +136,7 @@ export class SecretairePageComponent implements OnInit {
   }
 
   disabledSaveButton(): boolean {
-    return !this.nouveauRdv.patientId || !this.nouveauRdv.dentisteId || !this.nouveauRdv.dateRdv;
+    return !this.nouveauRdv.patientId || !this.nouveauRdv.dentisteId || !this.nouveauRdv.dateRdv || !this.nouveauRdv.notes;
   }
 
   enregistrerRdv() {
@@ -137,7 +162,9 @@ export class SecretairePageComponent implements OnInit {
 
     }
 
-    this.loading = true; // Start loading
+    console.log("donnees a enregistrer: ", this.nouveauRdv);
+
+
     this.rdvService.prendre(this.nouveauRdv)
 
       .subscribe({
@@ -151,7 +178,7 @@ export class SecretairePageComponent implements OnInit {
 
 
         error: (err) => {
-          this.loading = false; // Stop loading
+
           console.error("Erreur création RDV", err);
           this.snackbarService.error("Erreur lors de l'enregistrement");
 
@@ -202,56 +229,74 @@ export class SecretairePageComponent implements OnInit {
 
 
   getDentistes() {
-    this.cabinetPrestationService.getDentisteCabinet(1).subscribe(
-      (response: any) => {
 
+    if (!this.user) {
+      return;
+    }
+    console.log("recuperer les dentistes");
+    this.cabinetPrestationService.getDentisteCabinet(this.user.id).subscribe(
+      (response: any) => {
+        console.log("dentistes ", response);
         this.dentistes = response;
-        console.log("les dentistes ", this.dentistes);
+        console.log("dentistes ", response);
 
       },
       (error: any) => {
-        this.snackbarService.error("Erreur lors de la récupération des dentistes");
+        this.snackbarService.error("Vérifier votre connexion");
         console.error('Erreur lors de la récupération des dentistes:', error);
       }
     );
   }
 
   getPrestationsByCabinet() {
-    this.cabinetPrestationService.getByCabinet(2).subscribe(
+
+
+    if (!this.user) {
+      return;
+    }
+    this.cabinetPrestationService.getByCabinet(this.user.id).subscribe(
       (response: any) => {
         if (response.statut === 'OK') {
           this.prestations = response.data;
-         this.cd.detectChanges();
+          this.cd.detectChanges();
 
         }
-        if(response.statut === 'KO') this.snackbarService.error(response.message);
+        if (response.statut === 'KO') this.snackbarService.error(response.message);
       },
       (error: any) => {
-        console.error('Erreur lors de la récupération des prestations du cabinet:', error);
-        this.snackbarService.error("Erreur lors de la récupération des prestations du cabinet");
+
+        this.snackbarService.error("Verifier votre connexion");
       }
     );
 
   }
 
-  getRendezVousByCabinet() {
-    this.loading = true; // Start loading
-    this.rdvService.getByCabinet(2).subscribe(
-      (response: any) => {
+  getRendezVousByCabinet(): void {
+
+
+    if (!this.user) {
+      return;
+    }
+
+    this.loading = true;
+
+    this.rdvService.getByCabinet(this.user.id).subscribe({
+      next: (response: any) => {
         this.loading = false;
+
         if (response.statut === 'OK') {
           this.rdvList = response.data;
-          this.cd.detectChanges();
-
+          this.cd.detectChanges()
+        } else {
+          this.snackbarService.error(response.message);
         }
-        if(response.statut === 'KO') this.snackbarService.error(response.message);
       },
-      (error: any) => {
-        this.loading = false; // Stop loading
-        this.snackbarService.error("Erreur lors de la récupération des rendez-vous du cabinet");
-        console.error('Erreur lors de la récupération des rendez-vous du cabinet:', error);
+
+      error: () => {
+        this.loading = false;
+        this.snackbarService.error("Vérifiez votre connexion");
       }
-    );
+    });
   }
 
   getPatients() {
@@ -261,8 +306,9 @@ export class SecretairePageComponent implements OnInit {
         this.cd.detectChanges();
       },
       (error: any) => {
-        this.snackbarService.error("Erreur lors de la récupération des patients du cabinet");
-        console.error('Erreur lors de la récupération des patients du cabinet:', error);
+        this.loading = false
+        this.snackbarService.error("Vérifier votre connexion");
+
       }
     );
   }
@@ -297,23 +343,23 @@ export class SecretairePageComponent implements OnInit {
   }
 
   deleteRdv(rdvId: number) {
-    this.loading = false;
-    
+
+
     this.rdvService.deleteRendezVous(rdvId).subscribe(
       (response: any) => {
-        console.log("deleteRdv called with rdvId:", response);
-        this.loading = false;
+        
         if (response.statut === 'OK') {
+   
           this.snackbarService.success("Rendez-vous supprimé avec succès");
           this.getRendezVousByCabinet();
         }
-        if(response.statut === 'KO') this.snackbarService.error(response.message);
-      
+        if (response.statut === 'KO') this.snackbarService.error(response.message);
+
       },
       (error: any) => {
         this.loading = false;
         console.error(error);
-        this.snackbarService.error("Une erreur est survenue lors de la suppression du rendez-vous.");
+        this.snackbarService.error("Vérifier votre connexion.");
       }
     );
   }
@@ -324,13 +370,42 @@ export class SecretairePageComponent implements OnInit {
         message: 'Voulez-vous vraiment supprimer ce rendez-vous ?',
         isDelete: true,
         onConfirm: () => {
-          
+
           this.deleteRdv(rdvId);
           this.getRendezVousByCabinet();
         }
       }
     });
-    
+
+  }
+
+  validerRdv(rdvId: number): void {
+
+    this.rdvService.modifierStatut(rdvId, "VALIDE").subscribe({
+      next: () => {
+
+        this.snackbarService.success("Rendez-vous validé avec succès");
+        this.getRendezVousByCabinet();
+      },
+      error: (error: any) => {
+        this.snackbarService.error("Une erreur est survenue lors de la validation");
+      }
+    });
+  }
+
+  openValideConfirm(rdvId: number) {
+    const dialogRef = this.dialog.open(ConfimDialog,
+      {
+        data: {
+          message: "Voulez-vous vraiment validé ce rendez-vous?",
+          isDelete: false,
+          onConfirm: () => {
+            this.validerRdv(rdvId)
+            this.getRendezVousByCabinet()
+          }
+        }
+      }
+    )
   }
 
 

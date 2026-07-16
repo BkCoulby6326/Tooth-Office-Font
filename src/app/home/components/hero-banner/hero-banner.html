@@ -1,13 +1,19 @@
 <section class="hero">
+    @for (banner of banners; track banner.image; let index = $index) {
+        <div
+            class="banner-slide"
+            [class.banner-slide--active]="index === activeBannerIndex()"
+          
+            [style.background-image]="'url(' + banner.image + ')'"
+            aria-hidden="true"
+        ></div>
+    }
 
     <div class="overlay">
 
-        <h1>Un sourire en bonne santé commence ici</h1>
+        <h1>{{ banners[activeBannerIndex()].title }}</h1>
 
-        <p>
-            Gérez facilement vos rendez-vous et prenez soin de votre santé
-            bucco-dentaire.
-        </p>
+        <p>{{ banners[activeBannerIndex()].description }}</p>
 
     </div>
 

@@ -17,7 +17,7 @@ export class CabinetPrestation {
     }
 
     getDentisteCabinet(dentisteId: number) {
-        return this.http.get(`${this.urlDentiste}/${dentisteId}/dentistes`);
+        return this.http.get(`${this.urlDentiste}/dentistes/${dentisteId}`);
     }
 
     getPatientsCabinet() {

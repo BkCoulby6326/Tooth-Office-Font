@@ -20,12 +20,12 @@
 
      <div class="input-block">
        <div class="input-brick">
-         <label for="nom" class="form-label fs-5">Nom</label>
+         <label for="nom" class="form-label fs-6">Nom</label>
          <div class="position-relative">
            <i class="bi bi-person input-icon"></i>
            <input
              id="nom"
-             class="form-control form-control-lg rounded-4 ps-5"
+             class="form-control  rounded-4 ps-5"
              type="text"
              formControlName="nom"
              placeholder="Votre nom">
@@ -33,12 +33,12 @@
        </div>
 
        <div class="input-brick">
-         <label for="prenom" class="form-label fs-5">Prénom</label>
+         <label for="prenom" class="form-label fs-6">Prénom</label>
          <div class="position-relative">
            <i class="bi bi-person input-icon"></i>
            <input
              id="prenom"
-             class="form-control form-control-lg rounded-4 ps-5"
+             class="form-control  rounded-4 ps-5"
              type="text"
              formControlName="prenom"
              placeholder="Votre prénom">
@@ -46,24 +46,24 @@
        </div>
      </div>
       <div class="input-block">
-        <div class="input-brick"><label for="email" class="form-label fs-5">Email</label>
+        <div class="input-brick"><label for="email" class="form-label fs-6">Email</label>
           <div class="position-relative">
             <i class="bi bi-envelope input-icon"></i>
             <input
               id="email"
-              class="form-control form-control-lg rounded-4 ps-5"
+              class="form-control  rounded-4 ps-5"
               type="email"
               formControlName="email"
               placeholder="ex. nom@email.com">
           </div></div>
         <div class="input-brick">
 
-          <label for="telephone" class="form-label fs-5">Téléphone</label>
+          <label for="telephone" class="form-label fs-6">Téléphone</label>
           <div class="position-relative">
             <i class="bi bi-telephone input-icon"></i>
             <input
               id="telephone"
-              class="form-control form-control-lg rounded-4 ps-5"
+              class="form-control  rounded-4 ps-5"
               type="text"
               formControlName="telephone"
               placeholder="+243 970 000 000">
@@ -73,37 +73,32 @@
       </div>
 
       <div class="input-block">
-        <div class="input-brick"><label for="motDePasse" class="form-label fs-5">Mot de passe</label>
+        <div class="input-brick"><label for="motDePasse" class="form-label fs-6">Mot de passe</label>
           <div class="position-relative">
             <i class="bi bi-shield-lock input-icon"></i>
             <input
               id="motDePasse"
-              class="form-control form-control-lg rounded-4 ps-5"
+              class="form-control  rounded-4 ps-5"
               type="password"
               formControlName="motDePasse">
           </div></div>
-        <div class="input-brick"><label for="confirmationMotDePasse" class="form-label fs-5">Confirmation du mot de passe</label>
+        <div class="input-brick"><label for="confirmationMotDePasse" class="form-label fs-6">Confirmation du mot de passe</label>
           <div class="position-relative">
             <i class="bi bi-shield-lock input-icon"></i>
             <input
               id="confirmationMotDePasse"
-              class="form-control form-control-lg rounded-4 ps-5"
+              class="form-control  rounded-4 ps-5"
               type="password"
               formControlName="confirmationMotDePasse">
           </div></div>
       </div>
 
-
-
-
-
-
-      <label for="role" class="form-label fs-5">Rôle</label>
+      <label for="role" class="form-label fs-6">Rôle</label>
       <div class="position-relative">
         <i class="bi bi-person-badge input-icon"></i>
         <select
           id="role"
-          class="form-select form-select-lg rounded-4 ps-5"
+          class="form-select  rounded-4 ps-5"
           formControlName="role">
           <option value="PATIENT">Patient</option>
         </select>
@@ -111,7 +106,7 @@
 
       <button
         type="submit"
-        class="btn btn-primary fs-5 rounded-4"
+        class="btn btn-primary fs-6 rounded-4"
         [disabled]="isSubmitting">
         Créer le compte
       </button>
