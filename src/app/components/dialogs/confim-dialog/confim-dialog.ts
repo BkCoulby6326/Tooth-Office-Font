@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 
 export interface ConfirmationData {
@@ -8,7 +9,7 @@ export interface ConfirmationData {
 }
 @Component({
   selector: 'app-confim-dialog',
-  imports: [MatDialogModule],
+  imports: [MatDialogModule, MatButtonModule],
   templateUrl: './confim-dialog.html',
   styleUrl: './confim-dialog.css',
 })

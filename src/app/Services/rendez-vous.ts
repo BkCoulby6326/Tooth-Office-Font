@@ -11,8 +11,8 @@ import { RendezVousCreate } from '../models/rdv-create';
 })
 export class RendezVousService {
   private readonly http = inject(HttpClient);
- // private readonly url = `${environment.apiUrl}/rendez-vous`;
-  private   url =   '/rendez-vous';
+ // private readonly url = `${environment.apiUrl}/v1/rendez-vous`;
+  private   url =   `${environment.apiUrl}/v1/rendez-vous`;
 
   prendre(rdv: RendezVousCreate): Observable<RendezVous> {
     return this.http.post<RendezVous>(`${this.url}/prendre`, rdv);
