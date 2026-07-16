@@ -27,6 +27,9 @@ export class UtilisateurService {
   ajouterUtilisateur(utilisateur: Utilisateur): Observable<Utilisateur> {
     return this.http.post<Utilisateur>(this.apiUrl, utilisateur);
   }
+  getDentistesParCabinet(cabinetId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/cabinet/${cabinetId}/dentistes`);
+  }
 
   // Modifier
   modifierUtilisateur(id: number, utilisateur: Utilisateur): Observable<Utilisateur> {
