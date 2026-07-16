@@ -1,0 +1,101 @@
+<mat-toolbar class="header shadow-sm">
+
+    <div class="container-fluid">
+
+        <div class="row align-items-center w-100">
+
+            <!-- Logo -->
+
+            <div class="col-md-3">
+
+                <a
+                    routerLink="/"
+                    class="logo d-flex align-items-center text-decoration-none">
+
+                    <img
+                        src="assets/images/logo.png"
+                        alt="logo">
+
+                    <div class="ms-2">
+
+                        <h4 class="mb-0 fw-bold">
+
+                            Tooth Office
+
+                        </h4>
+
+                        <small>
+
+                            SYSTÈME DENTAIRE
+
+                        </small>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+            <!-- Navigation -->
+
+            <div class="col-md-6">
+
+                <nav class="d-flex justify-content-center gap-5">
+
+                    <a
+                        routerLink="/cabinets"
+                        routerLinkActive="active">
+
+                        <mat-icon>
+
+                            business
+
+                        </mat-icon>
+
+                        Cabinets
+
+                    </a>
+
+                    <a
+                        routerLink="/appointments"
+                        routerLinkActive="active">
+
+                        <mat-icon>
+
+                            calendar_month
+
+                        </mat-icon>
+
+                        Rendez-vous
+
+                    </a>
+
+                </nav>
+
+            </div>
+
+            <!-- Profil -->
+
+            <div class="col-md-3 d-flex justify-content-end">
+
+                <button
+                    mat-button
+                    routerLink="/profile">
+
+                    <mat-icon>
+
+                        account_circle
+
+                    </mat-icon>
+
+                    Profil
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</mat-toolbar>

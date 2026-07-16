@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@import "@fontsource/jost";
+
+:root {
+  --primary-color: #00B59C;
+  --secondary-color: #006045;
+  --tertiary-color: #4F39F6;
+  --surface-color: #F8FAFC;
+  --error-color: #EC003F;
+  --text-color: #525252;
+  --alert-color: #F29500;
+}
+
+body {
+  font-family: "Jost", sans-serif;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+  margin: 0;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.form-control:focus {
+  border-color: #00B59C;
+  box-shadow: 0 0 0 0.2rem rgba(0, 181, 156, 0.25);
+}
+
+.form-control::placeholder {
+  opacity: 0.3;
+}
+

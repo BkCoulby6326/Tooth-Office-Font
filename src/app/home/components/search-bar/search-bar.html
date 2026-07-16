@@ -1,0 +1,41 @@
+<div class="container mt-4">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8 col-md-10">
+
+            <mat-form-field appearance="outline" class="w-100">
+
+                <mat-icon matPrefix>
+                    search
+                </mat-icon>
+
+                <input
+                
+                    matInput
+                    [(ngModel)]="search"
+                    (keyup)="onSearch()"
+                    [placeholder]="message">
+
+                @if(search){
+
+                    <button
+                        mat-icon-button
+                        matSuffix
+                        (click)="clear()">
+
+                        <mat-icon>
+                            close
+                        </mat-icon>
+
+                    </button>
+
+                }
+
+            </mat-form-field>
+
+        </div>
+
+    </div>
+
+</div>

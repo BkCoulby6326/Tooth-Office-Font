@@ -1,0 +1,47 @@
+<div class="dashboard-tabs">
+
+    <button
+        class="tab"
+        [class.active]="page==='cabinet'"
+        (click)="page='cabinet'">
+
+        Gestion des Cabinets
+
+    </button>
+
+    <button
+        class="tab"
+        [class.active]="page==='utilisateur'"
+        (click)="page='utilisateur'">
+
+        Gestion des Utilisateurs
+
+    </button>
+
+    <button
+        class="tab"
+        [class.active]="page==='abonnement'"
+        (click)="page='abonnement'">
+
+        Plans d'Abonnement
+
+    </button>
+
+</div>
+@if(page=='cabinet'){
+
+    <app-cabinets/>
+
+}
+
+@if(page=='utilisateur'){
+
+    <app-gestion-utilisateurs/>
+
+}
+
+@if(page=='abonnement'){
+
+    <app-abonnement/>
+
+}

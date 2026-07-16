@@ -1,0 +1,38 @@
+<mat-toolbar class="navbar">
+  <a routerLink="/" class="brand" aria-label="Tooth Office, accueil">
+    <img src="/assets/images/logo.png" alt="" />
+    <span>
+      <strong>Tooth Office</strong>
+      <small>Système dentaire</small>
+    </span>
+  </a>
+
+  <ng-container *ngIf="currentUser$ | async as user; else guestActions">
+    <nav class="navigation" aria-label="Navigation principale">
+      <a *ngFor="let item of visibleItems(user)" [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.route === '/' }">
+        <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
+        {{ item.label }}
+      </a>
+    </nav>
+    <div class="account-actions">
+      <span class="user-name">{{ user.prenom || user.nom || user.email }}</span>
+      <button mat-stroked-button type="button" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Déconnexion
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-template #guestActions>
+    <nav class="navigation" aria-label="Navigation principale">
+      <a *ngFor="let item of visibleItems(null)" [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: item.route === '/' }">
+        <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
+        {{ item.label }}
+      </a>
+    </nav>
+    <div class="account-actions">
+      <a mat-button routerLink="/register">Créer un compte</a>
+      <a mat-flat-button routerLink="/login">Connexion</a>
+    </div>
+  </ng-template>
+</mat-toolbar>

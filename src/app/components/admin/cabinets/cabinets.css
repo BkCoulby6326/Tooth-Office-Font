@@ -1,0 +1,105 @@
+.content-grid{
+
+    display:grid;
+
+    grid-template-columns:360px 1fr;
+
+    gap:30px;
+
+}
+
+/**************** FORMULAIRE **************/
+
+.form-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+
+    border:1px solid #edf1f7;
+
+}
+
+.form-card h3{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:28px;
+
+    color:#24324b;
+
+}
+
+.form-card form{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+mat-form-field{
+
+    width:100%;
+
+    margin-bottom:14px;
+
+}
+
+.create-btn{
+
+    height:54px;
+
+    margin-top:10px;
+
+    border-radius:12px;
+
+    background:#ff9800 !important;
+
+    color:white !important;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+/**************** TABLEAU **************/
+
+.table-card{
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:0 2px 12px rgba(0,0,0,.05);
+
+    border:1px solid #edf1f7;
+
+    overflow:hidden;
+
+}
+
+.table-card h3{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    margin-bottom:24px;
+
+    color:#24324b;
+
+}
+
+
+
+
