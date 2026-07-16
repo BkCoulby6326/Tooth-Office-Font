@@ -11,7 +11,7 @@
                         CABINETS DENTAIRES
                     </span>
 
-                    <h2>4</h2>
+                    <h2>{{ statistiques?.cabinets }}</h2>
 
                 </div>
 
@@ -37,7 +37,7 @@
                         PRATICIENS DENTISTES
                     </span>
 
-                    <h2>3</h2>
+                    <h2>{{ statistiques?.dentistes }}</h2>
 
                 </div>
 
@@ -63,7 +63,7 @@
                         PATIENTS INSCRITS
                     </span>
 
-                    <h2>1</h2>
+                    <h2>{{ statistiques?.patients }}</h2>
 
                 </div>
 
@@ -86,11 +86,11 @@
                 <div>
 
                     <span class="stat-label">
-                        CHIFFRE D'AFFAIRES
+                        Utilisateurs actifs
                     </span>
 
                     <h2 class="money">
-                        3 580 $
+                        {{ statistiques?.users }}
                     </h2>
 
                 </div>
