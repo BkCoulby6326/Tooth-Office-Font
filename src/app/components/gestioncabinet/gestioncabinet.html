@@ -47,9 +47,9 @@
 
     </div>
     <div class="cartNav" >
-            <div><button class="tab1" (click)="miseajour('tab1')" [class.active]="activeTab === 'tab1'">Equipe Médicale & Accueil</button></div>
-            <div><button class="tab2" (click)="miseajour('tab2')" [class.active]="activeTab === 'tab2'">Gestion des soins & Tarifs</button></div>
-            <div><button class="tab3" (click)="miseajour('tab3')" [class.active]="activeTab === 'tab3'">Forfait & Abonnement</button></div>
+            <div #div1><button class="tab1" (click)="miseajour('tab1')" #tab1>Equipe Médicale & Accueil</button></div>
+            <div #div2><button class="tab2" (click)="miseajour('tab2')" #tab2>Gestion des soins & Tarifs</button></div>
+            <div #div3><button class="tab3" (click)="miseajour('tab3')" #tab3>Forfait & Abonnement</button></div>
     </div>
     </section>
     @if(activeTab === 'tab1') {

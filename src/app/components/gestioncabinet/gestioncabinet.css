@@ -66,7 +66,6 @@
 }
 .active{
         background-color: blue;
-
     }
 .cartNav{
         display: flex;
@@ -78,7 +77,6 @@
         padding: 3px;
         box-shadow: 2px 4px 5px #8C8C8C;
         div{
-            border: solid 1px #8C8C8C;
             width: 33.5%;
             border-radius: 15px;
             button{
@@ -86,9 +84,15 @@
                 margin: auto;
                 padding: 10px 90px;
                 border: none;
-                background-color: white;
+                background-color: transparent;
                 font-weight: bold;
                 color: #8C8C8C;
             }
         }
     }
+
+
+.animation{
+    transition: 300ms ease ;
+
+}

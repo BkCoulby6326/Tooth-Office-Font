@@ -41,8 +41,6 @@ export const routes: Routes = [
       data: { roles: ['ADMIN_SYSTEM'] }
     },
 
- 
-
   {
     path: "secretaire",
     component: SecretairePageComponent
