@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 })
 export class AvisService {
     private http = inject(HttpClient);
-    private url = environment.apiUrl +'/avis';
+    private url = "https://localhost:8080/api/avis";
+    //private url = environment.apiUrl +'/avis';
 
     create(dto: AvisRequest): Observable<AvisDetail> {
     return this.http.post<AvisDetail>(this.url, dto);

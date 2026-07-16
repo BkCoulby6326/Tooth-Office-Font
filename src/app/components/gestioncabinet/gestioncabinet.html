@@ -1,0 +1,68 @@
+<section class="gestioncabinet">
+    <h1 class="big pk">Gestion de mon Cabinet Dentaire</h1>
+    <div class="soustitre pk">
+    <p>Gérez votre personnel soignant, fixez vos tarifs de soins et ajoutez votre forfait SaaS</p>
+    <p class="ct">CONTROLE GLOBAL</p>
+    </div>
+    
+    <div class="cartS">
+        <div class="cart1 cartG" >
+            <span>PRATICIENS DENTISTES</span>
+            <div class="Ub">
+            <h3>2</h3>
+            <div class="igA">
+            <img class="ig" src="/1.svg" width="25px" alt=""/>
+            </div>
+            </div>
+            
+        </div>
+        <div class="cart2 cartG">
+            <span>SECRETAIRES ACTIVES</span>
+            <div class="Ub">
+            <h3>1</h3>
+            <div class="igA">
+            <img class="ig" src="/2.svg" width="25px" alt=""/>
+            </div>
+            </div>
+        </div>
+        <div class="cart3 cartG">
+            <span>PRESTATIONS OFFERTES</span>
+            <div class="Ub">
+            <h3>5</h3>
+            <div class="igA">
+            <img class="ig" src="/3.svg" width="25px" alt=""/>
+            </div>
+            </div>
+        </div>
+        <div class="cart4 cartG">
+            <span>FORFAIT CABINET</span>
+            <div class="Ub">
+            <h3 class="prm">PREMIUM</h3>
+            <div class="igA">
+            <img class="ig" src="/4.svg" width="25px" alt=""/>
+            </div>
+            </div>
+            
+        </div>
+
+    </div>
+    <div class="cartNav" >
+            <div><button class="tab1" (click)="miseajour('tab1')" [class.active]="activeTab === 'tab1'">Equipe Médicale & Accueil</button></div>
+            <div><button class="tab2" (click)="miseajour('tab2')" [class.active]="activeTab === 'tab2'">Gestion des soins & Tarifs</button></div>
+            <div><button class="tab3" (click)="miseajour('tab3')" [class.active]="activeTab === 'tab3'">Forfait & Abonnement</button></div>
+    </div>
+    </section>
+    @if(activeTab === 'tab1') {
+        <div class="tab1">
+            <app-equip></app-equip>
+        </div>
+    } @else if(activeTab === 'tab2') {
+        <div class="tab2">
+            <app-tarif></app-tarif>
+        </div>
+    } @else if(activeTab === 'tab3') {
+        <div class="tab3">
+            <h1>Forfait & Abonnement</h1>
+            <p>Choisissez votre forfait et gérez votre abonnement</p>
+        </div>
+    }
