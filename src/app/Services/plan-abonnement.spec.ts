@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PlanAbonnementService } from './plan-abonnement-service';
+import { PlanAbonnementService } from './plan-abonnement';
 
-describe('PlanAbonnementService', () => {
+describe('PlanAbonnement', () => {
   let service: PlanAbonnementService;
 
   beforeEach(() => {

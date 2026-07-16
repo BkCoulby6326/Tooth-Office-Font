@@ -1,0 +1,38 @@
+.header{
+
+    background: white;
+
+    height: 85px;
+
+    position: sticky;
+
+    top:0;
+
+    z-index:1000;
+}
+
+.logo img{
+
+    width:60px;
+
+    height:60px;
+
+    object-fit:contain;
+
+}
+
+.logo h4{
+
+    color:#111;
+
+}
+
+button{
+
+    width:180px;
+
+    height:48px;
+
+    border-radius:10px;
+
+}

@@ -1,0 +1,45 @@
+.hero {
+    height: 350px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-slide {
+    position: absolute;
+    inset: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+}
+
+.banner-slide--active {
+    opacity: 1;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 60px 42px;
+    color: #f8fafc;
+    background: linear-gradient(
+        to bottom,
+        rgba(187, 187, 187, .2) 0%,
+        #006045 100%
+    );
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+p {
+    font-size: 1.3rem;
+    align-items: flex-end;
+}

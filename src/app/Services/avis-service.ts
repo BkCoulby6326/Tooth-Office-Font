@@ -8,41 +8,40 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AvisService {
-    private http = inject(HttpClient);
-    private url = "https://localhost:8080/api/avis";
-    //private url = environment.apiUrl +'/avis';
+  //   private http = inject(HttpClient);
+  //   private url = environment.apiUrl +'/avis';
 
-    create(dto: AvisRequest): Observable<AvisDetail> {
-    return this.http.post<AvisDetail>(this.url, dto);
-  }
+  //   create(dto: AvisRequest): Observable<AvisDetail> {
+  //   return this.http.post<AvisDetail>(this.url, dto);
+  // }
 
-  // GET /api/avis → tous les avis
-  getAll(): Observable<AvisDetail[]> {
-    return this.http.get<AvisDetail[]>(this.url);
-  }
+  // // GET /api/avis → tous les avis
+  // getAll(): Observable<AvisDetail[]> {
+  //   return this.http.get<AvisDetail[]>(this.url);
+  // }
 
-  // GET /api/avis/{id} → un avis par ID
-  getById(id: number): Observable<AvisDetail> {
-    return this.http.get<AvisDetail>(`${this.url}/${id}`);
-  }
+  // // GET /api/avis/{id} → un avis par ID
+  // getById(id: number): Observable<AvisDetail> {
+  //   return this.http.get<AvisDetail>(`${this.url}/${id}`);
+  // }
 
-  // PUT /api/avis/{id} → modifier un avis
-  update(id: number, dto: AvisRequest): Observable<AvisDetail> {
-    return this.http.put<AvisDetail>(`${this.url}/${id}`, dto);
-  }
+  // // PUT /api/avis/{id} → modifier un avis
+  // update(id: number, dto: AvisRequest): Observable<AvisDetail> {
+  //   return this.http.put<AvisDetail>(`${this.url}/${id}`, dto);
+  // }
 
-  // DELETE /api/avis/{id} → supprimer un avis
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${id}`);
-  }
+  // // DELETE /api/avis/{id} → supprimer un avis
+  // delete(id: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.url}/${id}`);
+  // }
 
-  // GET /api/avis/cabinet/{id} → avis d'un cabinet
-  getByCabinet(cabinetId: number): Observable<AvisDetail[]> {
-    return this.http.get<AvisDetail[]>(`${this.url}/cabinet/${cabinetId}`);
-  }
+  // // GET /api/avis/cabinet/{id} → avis d'un cabinet
+  // getByCabinet(cabinetId: number): Observable<AvisDetail[]> {
+  //   return this.http.get<AvisDetail[]>(`${this.url}/cabinet/${cabinetId}`);
+  // }
 
-  // GET /api/avis/patient/{id} → avis d'un patient
-  getByPatient(patientId: number): Observable<AvisDetail[]> {
-    return this.http.get<AvisDetail[]>(`${this.url}/patient/${patientId}`);
-  }
+  // // GET /api/avis/patient/{id} → avis d'un patient
+  // getByPatient(patientId: number): Observable<AvisDetail[]> {
+  //   return this.http.get<AvisDetail[]>(`${this.url}/patient/${patientId}`);
+  // }
 }
