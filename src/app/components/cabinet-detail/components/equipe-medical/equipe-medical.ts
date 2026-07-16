@@ -1,8 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  SimpleChanges,
+  Input,
+  inject,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+// Imports Angular Material
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -12,7 +20,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 
 import { Dentiste } from '../../../../models/Dentiste';
-import { RoleEnum } from '../../../../models/RoleEnum';
 import { UtilisateurService } from '../../../../Services/utilisateur';
 
 @Component({
@@ -33,32 +40,40 @@ import { UtilisateurService } from '../../../../Services/utilisateur';
   templateUrl: './equipe-medical.html',
   styleUrl: './equipe-medical.css',
 })
-export class EquipeMedical implements OnInit {
+export class EquipeMedical implements OnChanges {
+  private utilisateurService = inject(UtilisateurService);
+  private cdr = inject(ChangeDetectorRef);
+
+  @Input() cabinetId!: number;
+
   dentistes: Dentiste[] = [];
   dentistesFiltres: Dentiste[] = [];
   rechercheNom: string = '';
   specialiteSelectionnee: string = '';
   specialites: string[] = [];
 
-  constructor(private utilisateurService: UtilisateurService) {}
-
-  ngOnInit(): void {
-    this.chargerMedecins();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['cabinetId'] && this.cabinetId) {
+      this.chargerMedecins();
+    }
   }
 
-  chargerMedecins(): void {
-    this.utilisateurService.getUtilisateurs().subscribe({
-      next: (utilisateurs) => {
-        this.dentistes = utilisateurs.filter((u) => u.role === RoleEnum.DENTISTE) as Dentiste[];
 
+  chargerMedecins(): void {
+    this.utilisateurService.getDentistesParCabinet(this.cabinetId).subscribe({
+      next: (donneesRecues) => {
+        console.log('Vrais dentistes reçus du serveur :', donneesRecues);
+
+        this.dentistes = donneesRecues;
         this.dentistesFiltres = [...this.dentistes];
 
-        // Extraire dynamiquement les spécialités uniques pour remplir le menu déroulant
         const toutesSpecs = this.dentistes.map((d) => d.specialite).filter((s) => !!s);
         this.specialites = Array.from(new Set(toutesSpecs));
+
+        this.cdr.detectChanges();
       },
       error: (err) => {
-        console.error('Erreur lors du chargement des praticiens', err);
+        console.error('Erreur lors du chargement des vrais praticiens :', err);
       },
     });
   }

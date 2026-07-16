@@ -1,6 +1,6 @@
-import { Component, OnInit, inject, input, ChangeDetectorRef } from '@angular/core';
-import { DatePipe, DecimalPipe } from '@angular/common';
+import { Component, OnChanges, SimpleChanges, input, Input, inject, ChangeDetectorRef } from '@angular/core';
 
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
@@ -17,15 +17,17 @@ import { AvisDetail } from '../../../../models/avis';
   templateUrl: './avis-sur-cabinet.html',
   styleUrl: './avis-sur-cabinet.css',
 })
-export class AvisCabinet implements OnInit {
+export class AvisCabinet implements OnChanges {
   private avisService = inject(AvisService);
   private cdr = inject(ChangeDetectorRef);
-  cabinetId: number = 1;
+  @Input() cabinetId!: number;
 
   avis: AvisDetail[] = [];
 
-  ngOnInit(): void {
-    this.chargerAvis();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['cabinetId'] && this.cabinetId) {
+      this.chargerAvis();
+    }
   }
 
   chargerAvis(): void {
@@ -33,7 +35,6 @@ export class AvisCabinet implements OnInit {
       next: (data) => {
         this.avis = data;
         this.cdr.detectChanges();
-
       },
 
       error: (err) => {
