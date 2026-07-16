@@ -16,78 +16,81 @@
 
             @for (plan of plans; track plan.idPlan) {
 
-            <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6">
 
-                <div class="plan-card" [class.popular]="plan.nom === 'PRO'">
+                    <div class="plan-card"
+                         [class.popular]="plan.nom === 'PRO'">
 
-                    @if (plan.nom === 'PRO') {
-                    <span class="badge-populaire">
-                        POPULAIRE
-                    </span>
-                    }
-
-
-                    <h5 class="plan-name">
-                        {{ plan.nom }}
-                    </h5>
+                        @if (plan.nom === 'PRO') {
+                            <span class="badge-populaire">
+                                POPULAIRE
+                            </span>
+                        }
 
 
-                    <div class="price">
+                        <h5 class="plan-name">
+                            {{ plan.nom }}
+                        </h5>
 
-                        <span class="price-value">
-                            {{ plan.prixMensuel }} FCFA
-                        </span>
 
-                        <span class="price-month">
-                            / mois
-                        </span>
+                        <div class="price">
+
+                            <span class="price-value">
+                                {{ plan.prixMensuel }} FCFA
+                            </span>
+
+                            <span class="price-month">
+                                / mois
+                            </span>
+
+                        </div>
+
+
+                        <p class="plan-desc">
+                            {{ plan.description }}
+                        </p>
+
+
+                        <hr>
+
+
+                        <ul class="list-unstyled">
+
+                            <li>
+                                ✔ Jusqu'à {{ plan.maxDentistes }} dentistes
+                            </li>
+
+                            <li>
+                                ✔ Jusqu'à {{ plan.maxSecretaires }} secrétaires
+                            </li>
+
+                            <li>
+                                ✔ Gestion de {{ plan.maxCabinet }} cabinet(s)
+                            </li>
+
+                            <li>
+                                ✔ Agenda interactif
+                            </li>
+
+                            <li>
+                                ✔ Dossiers médicaux
+                            </li>
+
+                        </ul>
+
+
+                        <button 
+                            class="choose-btn"
+                            [class.premium-btn]="plan.nom === 'PRO'">
+
+                            Choisir ce plan
+
+                        </button>
+
 
                     </div>
 
-
-                    <p class="plan-desc">
-                        {{ plan.description }}
-                    </p>
-
-
-                    <hr>
-
-
-                    <ul class="list-unstyled">
-
-                        <li>
-                            ✔ Jusqu'à {{ plan.maxDentistes }} dentistes
-                        </li>
-
-                        <li>
-                            ✔ Jusqu'à {{ plan.maxSecretaires }} secrétaires
-                        </li>
-
-                        <li>
-                            ✔ Gestion de {{ plan.maxCabinet }} cabinet(s)
-                        </li>
-
-                        <li>
-                            ✔ Agenda interactif
-                        </li>
-
-                        <li>
-                            ✔ Dossiers médicaux
-                        </li>
-
-                    </ul>
-
-
-                    <button class="choose-btn" [class.premium-btn]="plan.nom === 'PRO'">
-
-                        Choisir ce plan
-
-                    </button>
-
-
                 </div>
-
-            </div>
 
             }
 
