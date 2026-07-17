@@ -1,4 +1,5 @@
 export interface CabinetResponseDTO {
+
     idCabinet: number;
 
   nomCabinet: string;

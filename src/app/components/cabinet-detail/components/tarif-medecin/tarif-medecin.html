@@ -8,28 +8,24 @@
         <span>TARIF CLINIQUE</span>
     </div>
 
-    <!-- Lignes de données -->
-    <div class="table-row">
-        <span >Consultation dentaire standard</span>
-        <span >30 minutes</span>
-        <span class=" price">10 000 F CFA</span>
-    </div>
-
-    <div class="table-row">
-        <span >Blanchissement Dentaire Professionnel</span>
-        <span >45 minutes</span>
-        <span class="price">30 000 F CFA</span>
-    </div>
-
-    <div class="table-row">
-        <span >Detartrage & Polissage</span>
-        <span >60 minutes</span>
-        <span class="price">40 000 F CFA</span>
-    </div>
-
-    <div class="table-row">
-        <span >Pose de Couronne Céramique</span>
-        <span >90 minutes</span>
-        <span class="price">25 000 F CFA</span>
-    </div>
-</div>
+    <!-- Lignes de données dynamiques -->
+    @if (soins.length > 0) {
+        @for (soin of soins; track soin.id) {
+            <div class="table-row">
+                <!-- Nom du soin -->
+                <span>{{ soin.typeSoin }}</span>
+                
+                <!-- Durée (avec le suffixe "minutes") -->
+                <span>{{ soin.duree }} minutes</span>
+                
+                <!-- Prix (formaté avec le pipe number) -->
+                <span class="price">{{ soin.tarifClinique | number:'1.0-0' }} F CFA</span>
+            </div>
+        }
+    } @else {
+        <!-- Message si la liste est vide -->
+        <div class="table-row">
+            <span>Aucun tarif disponible pour le moment.</span>
+        </div>
+    }
+</div>   
