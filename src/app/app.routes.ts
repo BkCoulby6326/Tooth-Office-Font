@@ -28,18 +28,16 @@ export const routes: Routes = [
                 .then(r => r.HOME_ROUTES)
     },
 
-     {
-        path: '',
-        loadChildren: () =>
-            import('./components/cabinet-detail/route.cabinet-detail')
-                .then(r => r.CABINETDETAIL_ROUTES)
-    },
-    {
-      path: 'admin',
-      loadComponent: () => import('./components/admin/admin').then(c => c.Admin),
-      canActivate: [roleGuard],
-      data: { roles: ['ADMIN_SYSTEM'] }
-    },
+
+  {
+    path: '',
+    loadChildren: () =>
+      import('./components/cabinet-detail/route.cabinet-detail')
+        .then(m => m.CABINETDETAIL_ROUTES)
+  },
+
+
+    {path: 'admin',loadComponent: () => import('./components/admin/admin').then(c => c.Admin)},
 
   {
     path: "secretaire",

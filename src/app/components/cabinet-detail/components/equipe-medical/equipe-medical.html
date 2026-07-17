@@ -1,56 +1,73 @@
 <div class="medical-team-container">
-        <div class="header-section">
-            <h1>L'équipe médicale du cabinet</h1>
-            <p>Cliquez sur un médecin ci-dessous pour consulter son planning et prendre rendez-vous.</p>
-        </div>
+  <div class="header-section">
+    <h1>L'équipe médicale du cabinet</h1>
+    <p>Cliquez sur un médecin ci-dessous pour consulter son planning et prendre rendez-vous.</p>
+  </div>
 
-        <div class="search-filter-bar">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" placeholder="Recherche un médecin par nom...">
-            </div>
-            <div class="filter-box">
-                <i class="fas fa-filter"></i>
-                <input type="text" placeholder="Tous les services (Filter par soin)">
-                <i class="fas fa-chevron-down dropdown-icon"></i>
-            </div>
-        </div>
+  <!-- Barre de recherche et filtres-->
+  <div class="search-filter-bar">
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Rechercher un médecin</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        type="text"
+        placeholder="Rechercher par nom..."
+        [(ngModel)]="rechercheNom"
+        (input)="appliquerFiltres()"
+      />
+    </mat-form-field>
 
-        <div class="doctors-grid">
-            <!-- Carte de médecin 1 -->
-            <div class="doctor-card">
-                <div class="card-content">
-                    <div class="avatar">JS</div>
-                    <div class="info">
-                        <h3>Dr. Jean-Pierre Soudire</h3>
-                        <span class="specialty">ORTHODONTIE</span>
-                        <p class="description">Spécialiste de la pose d'appareils orthodontiques invisibles avec plus de 12 ans...</p>
-                    </div>
-                </div>
-                <div class="card-action">
-                    <a href="#">PRENDRE RENDEZ VOUS</a>
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a79c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="5" y1="12" x2="19" y2="12"></line>
-    <polyline points="12 5 19 12 12 19"></polyline>
-</svg>                </div>
-            </div>
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Filtrer par soin</mat-label>
+      <mat-icon matPrefix>filter_list</mat-icon>
+      <mat-select [(ngModel)]="specialiteSelectionnee" (selectionChange)="appliquerFiltres()">
+        <mat-option value="">Tous les services</mat-option>
+        @for (spec of specialites; track spec) {
+          <mat-option [value]="spec">{{ spec }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-            <!-- Carte de médecin 2 (Identique à la 1, comme dans l'image) -->
-            <div class="doctor-card">
-                <div class="card-content">
-                    <div class="avatar">JS</div>
-                    <div class="info">
-                        <h3>Dr. Jean-Pierre Soudire</h3>
-                        <span class="specialty">ORTHODONTIE</span>
-                        <p class="description">Spécialiste de la pose d'appareils orthodontiques invisibles avec plus de 12 ans...</p>
-                    </div>
-                </div>
-                <div class="card-action">
-                    <a href="#">PRENDRE RENDEZ VOUS</a>
-<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00a79c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="5" y1="12" x2="19" y2="12"></line>
-    <polyline points="12 5 19 12 12 19"></polyline>
-</svg>                </div>
+  <!-- Grille des praticiens -->
+  <div class="doctors-grid">
+    @for (medecin of dentistesFiltres; track medecin.id) {
+      <mat-card class="doctor-card" appearance="outlined">
+        <mat-card-content class="card-content-layout">
+
+          <div class="avatar-container">
+            <div class="avatar">
+              <!-- Utilisation de la méthode getInitials présente dans votre TS -->
+              {{ getInitials(medecin.prenom, medecin.nom) }}
             </div>
-        </div>
-    </div>
+          </div>
+
+          <div class="info-container">
+            <h3>Dr. {{ medecin.prenom }} {{ medecin.nom }}</h3>
+            <span class="specialty">{{ medecin.specialite | uppercase }}</span>
+            <p class="description">
+              Spécialiste qualifié en {{ medecin.specialite.toLowerCase() }} dédié à votre santé bucco-dentaire au sein de notre cabinet.
+            </p>
+          </div>
+
+        </mat-card-content>
+
+        <mat-divider></mat-divider>
+
+        <mat-card-actions class="card-action-layout">
+          <a mat-button color="primary" [routerLink]="['/prendre-rendez-vous', medecin.id]">
+            PRENDRE RENDEZ-VOUS
+          </a>
+          <button mat-icon-button color="primary" [routerLink]="['/prendre-rendez-vous', medecin.id]">
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    } @empty {
+      <div class="no-results">
+        <p>Aucun médecin ne correspond à vos critères de recherche.</p>
+      </div>
+    }
+  </div>
+</div>
